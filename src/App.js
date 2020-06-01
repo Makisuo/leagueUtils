@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { Router, Route, Switch } from 'react-router-dom'
 import history from './utils/history'
-import Main from './components/Sidebar'
+import Main from './components/MainUI'
 
 import HomePage from './pages/HomePage'
 

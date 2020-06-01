@@ -6,10 +6,10 @@
 	"main": "public/electron.js",
 	"homepage": "./",
 	"build": {
-		"win": {
-			"publish": [ "github", "bintray" ]
-		},
 		"appId": "com.example.electron-cra",
+		"publish": {
+			"provider": "github"
+		},
 		"files": [ "build/**/*", "node_modules/**/*" ],
 		"directories": {
 			"buildResources": "assets"
@@ -23,6 +23,7 @@
 		"@testing-library/user-event": "^7.1.2",
 		"cross-env": "^7.0.2",
 		"electron-is-dev": "^1.2.0",
+		"electron-updater": "^4.3.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-history": "^0.18.2",
