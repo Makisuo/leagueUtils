@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Home = (props) => {
-	const test = async () => {
-		console.log(await getNextChampionLevelUp('Makisuo UwU'))
-	}
-	test()
+	// const test = async () => {
+	// 	console.log(await getNextChampionLevelUp('Makisuo UwU'))
+	// }
+	// test()
 	const classes = useStyles()
 	return (
 		<Fragment>
