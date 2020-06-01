@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, HashRouter } from 'react-router-dom'
 import history from './utils/history'
 import Main from './components/MainUI'
 
@@ -22,7 +22,7 @@ function App (){
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Router history={history}>
+			<HashRouter history={history}>
 				<Switch>
 					<Route
 						path='/'
@@ -43,7 +43,7 @@ function App (){
 						)}
 					/>
 				</Switch>
-			</Router>
+			</HashRouter>
 		</ThemeProvider>
 	)
 }
