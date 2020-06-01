@@ -9,7 +9,15 @@ const isDev = require('electron-is-dev')
 let mainWindow
 
 function createWindow (){
-	mainWindow = new BrowserWindow({ width: 900, height: 680 })
+	app.commandLine.appendSwitch('disable-web-security')
+
+	mainWindow = new BrowserWindow({
+		'web-preferences': {
+			'web-security': false,
+		},
+		width: 1800,
+		height: 1600,
+	})
 	mainWindow.webContents.openDevTools()
 	mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
 	mainWindow.on('closed', () => (mainWindow = null))
