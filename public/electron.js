@@ -1,5 +1,5 @@
 const electron = require('electron')
-// const { autoUpdater } = require('electron-updater')
+const { autoUpdater } = require('electron-updater')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -10,7 +10,7 @@ const isDev = require('electron-is-dev')
 let mainWindow
 
 function createWindow (){
-	// autoUpdater.checkForUpdatesAndNotify()
+	autoUpdater.checkForUpdatesAndNotify()
 	app.commandLine.appendSwitch('disable-web-security')
 
 	mainWindow = new BrowserWindow({
