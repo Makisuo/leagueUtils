@@ -6,6 +6,9 @@
 	"main": "public/electron.js",
 	"homepage": "./",
 	"build": {
+		"win": {
+			"publish": [ "github", "bintray" ]
+		},
 		"appId": "com.example.electron-cra",
 		"files": [ "build/**/*", "node_modules/**/*" ],
 		"directories": {
