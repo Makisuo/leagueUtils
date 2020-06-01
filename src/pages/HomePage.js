@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react'
 import { Typography, makeStyles, Container, Paper } from '@material-ui/core'
 
+import { LolApi, Constants } from 'twisted'
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
+		backgroundImage: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg',
 	},
 	paper: {
 		marginBottom: theme.spacing(1),
@@ -12,8 +15,17 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Home = (props) => {
-	console.log(props)
-
+	let apiKey = 'RGAPI-2551364f-3275-43d2-a249-f620c937f92c'
+	const test = async () => {
+		const respond = await fetch(
+			'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Makisuo?api_key=RGAPI-2551364f-3275-43d2-a249-f620c937f92c',
+			{ mode: 'no-cors' },
+		)
+		const result = await respond.body
+		console.log(result)
+		return respond
+	}
+	console.log(test())
 	const classes = useStyles()
 	return (
 		<Fragment>
