@@ -1,6 +1,6 @@
 import { getLuminance } from '@material-ui/core'
 
-let apiKey = 'RGAPI-2551364f-3275-43d2-a249-f620c937f92c'
+let apiKey = 'RGAPI-6a0664c7-c99e-4c13-baba-ab0907f44801'
 
 export const getSummoner = async (name) => {
 	const respond = await fetch(
@@ -19,12 +19,20 @@ export const getChampionMastery = async (name) => {
 	return result
 }
 
-export const getLowestChampionMastery = async (name) => {}
+export const getLowestChampionMastery = async (name) => {
+	const championArray = await getChampionMastery(name)
+	const lowestChamp = championArray.reduce((element, currentElement) => {
+		let { championPoints } = element
+		let { highestChampionPoints } = currentElement
+
+		return highestChampionPoints > championPoints ? element : currentElement
+	})
+	return lowestChamp
+}
 
 export const getNextChampionLevelUp = async (name) => {
 	const championArray = await getChampionMastery(name)
-	console.log(championArray)
-	const test = championArray.reduce((element, currentElement) => {
+	const lowestChamp = championArray.reduce((element, currentElement) => {
 		let { championPointsUntilNextLevel } = element
 		if (championPointsUntilNextLevel === 0) {
 			return currentElement
@@ -34,5 +42,5 @@ export const getNextChampionLevelUp = async (name) => {
 		}
 		return championPointsUntilNextLevel < currentElement.championPointsUntilNextLevel ? element : currentElement
 	})
-	console.log(test)
+	return lowestChamp
 }

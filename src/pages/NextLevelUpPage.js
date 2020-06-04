@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-const Home = (props) => {
+const NextLevelUp = (props) => {
 	const test = async () => {
 		console.log(await getLowestChampionMastery('Makisuo UwU'))
 	}
@@ -47,4 +47,4 @@ const Home = (props) => {
 	)
 }
 
-export default Home
+export default NextLevelUp

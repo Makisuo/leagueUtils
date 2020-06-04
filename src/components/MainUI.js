@@ -129,7 +129,7 @@ export default function MiniDrawer (props){
 				<Divider />
 				<List>
 					{[ 'Home', 'Profile', 'Next Champ', 'Match History' ].map((text, index) => (
-						<ListItem button key={text} component={Link} to='/mastery   '>
+						<ListItem button key={text} component={Link} to='/mastery'>
 							<ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={text} />
 						</ListItem>

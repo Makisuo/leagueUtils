@@ -5,6 +5,7 @@ import history from './utils/history'
 import Main from './components/MainUI'
 
 import HomePage from './pages/HomePage'
+import NextLevelUpPage from './pages/NextLevelUpPage'
 
 function App (){
 	const [ darkMode, setDarkMode ] = useState(true)
@@ -35,10 +36,9 @@ function App (){
 					/>
 					<Route
 						path='/mastery'
-						exact
 						render={(props) => (
 							<Main>
-								<HomePage />
+								<NextLevelUpPage />
 							</Main>
 						)}
 					/>
