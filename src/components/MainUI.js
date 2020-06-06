@@ -121,7 +121,6 @@ export default function MiniDrawer (props){
 					<form
 						onSubmit={(e) => {
 							setUsername(document.getElementById('username-input').value)
-							// setUsername(document.getElementById('username-input').value)
 						}}
 					>
 						<TextField label='Username' type='username' id='username-input' variant='filled' />
@@ -177,7 +176,7 @@ export default function MiniDrawer (props){
 					))}
 				</List>
 			</Drawer>
-			<main className={classes.content}>{React.cloneElement(props.children, { username: username })}</main>
+			<main className={classes.content}>{props.children}</main>
 		</div>
 	)
 }

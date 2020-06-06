@@ -15,39 +15,22 @@ function App (){
 			contrastThreshold: 5,
 		},
 	})
-	const [ userName, setUserName ] = useState('Makisuo UwU')
+	const [ username, setUserName ] = useState('Makisuo UwU')
 
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<HashRouter history={history}>
-				<Switch>
-					<Route
-						path='/'
-						exact
-						render={(props) => (
-							<Main username={userName} setUsername={setUserName}>
-								<HomePage />
-							</Main>
-						)}
-					/>
-					<Route
-						path='/mastery'
-						render={(props) => (
-							<Main username={userName} setUsername={setUserName}>
-								<NextLevelUpPage />
-							</Main>
-						)}
-					/>
-					<Route
-						path='/nextChamp'
-						render={(props) => (
-							<Main username={userName} setUsername={setUserName}>
-								<MasteryOverviewPage />
-							</Main>
-						)}
-					/>
-				</Switch>
+				<Main username={username} setUsername={setUserName}>
+					<Switch>
+						<Route path='/' exact render={(props) => <HomePage {...props} username={username} />} />
+						<Route path='/mastery' render={(props) => <NextLevelUpPage {...props} username={username} />} />
+						<Route
+							path='/nextChamp'
+							render={(props) => <MasteryOverviewPage {...props} username={username} />}
+						/>
+					</Switch>
+				</Main>
 			</HashRouter>
 		</ThemeProvider>
 	)
