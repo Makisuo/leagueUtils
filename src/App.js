@@ -6,6 +6,7 @@ import Main from './components/MainUI'
 
 import HomePage from './pages/HomePage'
 import NextLevelUpPage from './pages/NextLevelUpPage'
+import MasteryOverviewPage from './pages/MasteryOverviewPage'
 
 function App (){
 	const [ darkMode, setDarkMode ] = useState(true)
@@ -39,6 +40,14 @@ function App (){
 						render={(props) => (
 							<Main>
 								<NextLevelUpPage />
+							</Main>
+						)}
+					/>
+					<Route
+						path='/nextChamp'
+						render={(props) => (
+							<Main>
+								<MasteryOverviewPage />
 							</Main>
 						)}
 					/>

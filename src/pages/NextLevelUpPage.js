@@ -10,14 +10,15 @@ import {
 	List,
 	ListItemText,
 } from '@material-ui/core'
-import { getSummoner, getNextChampionLevelUp, getChampionById, getLowestChampionMastery } from '../utils/LeagueAPI'
+import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
 import CircularProgress from '../components/CircularProgress'
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
-		backgroundImage: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg',
 	},
 	paper: {
+		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
 		marginTop: theme.spacing(5),
 		padding: theme.spacing(4),
 	},
@@ -44,7 +45,7 @@ const NextLevelUp = (props) => {
 	if (masteryData !== null && championData === null) {
 		getChampionData(masteryData.championId)
 	}
-	console.log(masteryData, championData)
+	// console.log(masteryData, championData)
 	const classes = useStyles()
 	return (
 		<Fragment>

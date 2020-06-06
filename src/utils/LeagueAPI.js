@@ -8,7 +8,7 @@ export const getSummoner = async (name) => {
 	return result
 }
 
-export const getChampionMastery = async (name) => {
+export const getMasteryData = async (name) => {
 	const { id } = await getSummoner(name)
 	const respond = await fetch(
 		`https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`,
@@ -17,8 +17,15 @@ export const getChampionMastery = async (name) => {
 	return result
 }
 
+export const getAllChampions = async () => {
+	const respond = await fetch(`http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json`)
+	const result = await respond.json()
+	console.log(result)
+	return result
+}
+
 export const getLowestChampionMastery = async (name) => {
-	const championArray = await getChampionMastery(name)
+	const championArray = await getMasteryData(name)
 	const lowestChamp = championArray.reduce((element, currentElement) => {
 		let { championPoints } = element
 		let { highestChampionPoints } = currentElement
@@ -29,7 +36,7 @@ export const getLowestChampionMastery = async (name) => {
 }
 
 export const getNextChampionLevelUp = async (name) => {
-	const championArray = await getChampionMastery(name)
+	const championArray = await getMasteryData(name)
 	const lowestChamp = championArray.reduce((element, currentElement) => {
 		let { championPointsUntilNextLevel } = element
 		if (championPointsUntilNextLevel === 0) {
@@ -51,6 +58,4 @@ export const getChampionById = async (id) => {
 			return data[i]
 		}
 	}
-
-	// console.log(data)
 }

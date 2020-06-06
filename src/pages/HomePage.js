@@ -4,7 +4,6 @@ import { getSummoner, getChampionMastery, getNextChampionLevelUp, getLowestChamp
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
-		backgroundImage: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg',
 	},
 	paper: {
 		marginBottom: theme.spacing(1),
@@ -13,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Home = (props) => {
-	// const test = async () => {
-	// 	console.log(await getLowestChampionMastery('Makisuo UwU'))
-	// }
-	// test()
 	const classes = useStyles()
 	return (
 		<Fragment>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton } from '@material-ui/core'
@@ -12,7 +13,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import HelpIcon from '@material-ui/icons/Help'
 import MailIcon from '@material-ui/icons/Mail'
-import { Link } from 'react-router-dom'
+import LensIcon from '@material-ui/icons/Lens'
+import SkipNextIcon from '@material-ui/icons/SkipNext'
 
 const drawerWidth = 240
 
@@ -128,12 +130,24 @@ export default function MiniDrawer (props){
 				</div>
 				<Divider />
 				<List>
-					{[ 'Home', 'Profile', 'Next Champ', 'Match History' ].map((text, index) => (
-						<ListItem button key={text} component={Link} to={index % 2 === 0 ? '/mastery' : '/'}>
-							<ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
+					<ListItem button component={Link} to={'/'}>
+						<ListItemIcon>
+							<HomeIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Home'} />
+					</ListItem>
+					<ListItem button component={Link} to={'/mastery'}>
+						<ListItemIcon>
+							<LensIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Mastery'} />
+					</ListItem>
+					<ListItem button component={Link} to={'/nextChamp'}>
+						<ListItemIcon>
+							<SkipNextIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Mastery Overview'} />
+					</ListItem>
 				</List>
 				<Divider />
 				<List>
