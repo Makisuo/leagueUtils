@@ -44,3 +44,15 @@ export const getNextChampionLevelUp = async (name) => {
 	})
 	return lowestChamp
 }
+
+export const getChampionById = async (id) => {
+	const response = await fetch('http://ddragon.leagueoflegends.com/cdn/10.11.1/data/en_US/champion.json')
+	const { data } = await response.json()
+	for (let i in data) {
+		if (parseInt(data[i].key) === id) {
+			return data[i]
+		}
+	}
+
+	// console.log(data)
+}
