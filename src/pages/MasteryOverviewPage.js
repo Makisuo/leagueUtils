@@ -3,8 +3,6 @@ import { makeStyles, Container } from '@material-ui/core'
 import { getMasteryData } from '../utils/LeagueAPI'
 import Table from '../components/Table'
 
-let currentUser = ''
-
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
@@ -16,20 +14,21 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const MasteryOverview = (props) => {
-	console.log(props)
-
 	const classes = useStyles()
 
 	const [ data, setData ] = useState(null)
+	const [ currentUser, setCurrentUser ] = useState(null)
 
-	let { username, previousUsername } = props
+	let { username } = props
 
 	const getData = async (name) => {
 		setData(await getMasteryData(name))
 	}
 
+	console.log(username, currentUser)
+
 	if (currentUser !== username) {
-		currentUser = username
+		setCurrentUser(username)
 		getData(username)
 	}
 	return (

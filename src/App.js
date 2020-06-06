@@ -15,6 +15,7 @@ function App (){
 			contrastThreshold: 5,
 		},
 	})
+	const [ userName, setUserName ] = useState('Makisuo UwU')
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -25,7 +26,7 @@ function App (){
 						path='/'
 						exact
 						render={(props) => (
-							<Main>
+							<Main username={userName} setUsername={setUserName}>
 								<HomePage />
 							</Main>
 						)}
@@ -33,7 +34,7 @@ function App (){
 					<Route
 						path='/mastery'
 						render={(props) => (
-							<Main>
+							<Main username={userName} setUsername={setUserName}>
 								<NextLevelUpPage />
 							</Main>
 						)}
@@ -41,7 +42,7 @@ function App (){
 					<Route
 						path='/nextChamp'
 						render={(props) => (
-							<Main>
+							<Main username={userName} setUsername={setUserName}>
 								<MasteryOverviewPage />
 							</Main>
 						)}

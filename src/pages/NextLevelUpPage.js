@@ -13,8 +13,6 @@ import {
 import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
 import CircularProgress from '../components/CircularProgress'
 
-let currentUser = ''
-
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
@@ -34,26 +32,21 @@ const useStyles = makeStyles((theme) => ({
 const NextLevelUp = (props) => {
 	const [ masteryData, setMasteryData ] = useState(null)
 	const [ championData, setChampioData ] = useState(null)
+	const [ currentUser, setCurrentUser ] = useState(null)
 
-	let { username, previousUsername } = props
+	let { username } = props
 
 	const getMasteryData = async (name) => {
 		let temp = await getNextChampionLevelUp(name)
 		setMasteryData(temp)
 		setChampioData(await getChampionById(temp.championId))
 	}
-	const getChampionData = async (id) => {
-		console.log('hi')
-		setChampioData(await getChampionById(id))
-	}
 
 	if (username !== currentUser) {
-		currentUser = username
-		getMasteryData(username).then()
+		setCurrentUser(username)
+		getMasteryData(username)
 	}
-	// if (masteryData !== null && championData === null) {
-	// 	getChampionData(masteryData.championId)
-	// }
+
 	const classes = useStyles()
 	return (
 		<Fragment>

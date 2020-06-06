@@ -85,8 +85,7 @@ export default function MiniDrawer (props){
 	const classes = useStyles()
 	const theme = useTheme()
 	const [ open, setOpen ] = React.useState(false)
-	const [ username, setUsername ] = React.useState('Makisuo UwU')
-	const [ previousUsername, setPreviousUsername ] = React.useState('Makisuo UwU')
+	const { username, setUsername } = props
 
 	const handleDrawerOpen = () => {
 		setOpen(true)
@@ -121,8 +120,8 @@ export default function MiniDrawer (props){
 					</Typography>
 					<form
 						onSubmit={(e) => {
-							setPreviousUsername(username)
 							setUsername(document.getElementById('username-input').value)
+							// setUsername(document.getElementById('username-input').value)
 						}}
 					>
 						<TextField label='Username' type='username' id='username-input' variant='filled' />
@@ -178,9 +177,7 @@ export default function MiniDrawer (props){
 					))}
 				</List>
 			</Drawer>
-			<main className={classes.content}>
-				{React.cloneElement(props.children, { username: username, previousUsername: previousUsername })}
-			</main>
+			<main className={classes.content}>{React.cloneElement(props.children, { username: username })}</main>
 		</div>
 	)
 }
