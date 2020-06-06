@@ -4,7 +4,6 @@ import {
 	makeStyles,
 	Container,
 	Paper,
-	CircularProgress,
 	Grid,
 	LinearProgress,
 	Box,
@@ -12,6 +11,7 @@ import {
 	ListItemText,
 } from '@material-ui/core'
 import { getSummoner, getNextChampionLevelUp, getChampionById, getLowestChampionMastery } from '../utils/LeagueAPI'
+import CircularProgress from '../components/CircularProgress'
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	list: {
 		padding: theme.spacing(2),
-		backgroundColor: theme.palette.secondary.dark,
+		backgroundColor: theme.palette.primary.main,
 		borderRadius: 4,
 	},
 }))
@@ -69,7 +69,6 @@ const NextLevelUp = (props) => {
 														className={classes.circularProgress}
 														size={'9rem'}
 														thickness={6}
-														variant='static'
 														value={
 															masteryData.championPointsSinceLastLevel /
 															(masteryData.championPointsSinceLastLevel +
@@ -83,12 +82,16 @@ const NextLevelUp = (props) => {
 												<Box p={1}>
 													<List className={classes.list}>
 														<ListItemText
+															primary='Mastery Level'
+															secondary={`Level ${masteryData.championLevel}`}
+														/>
+														<ListItemText
 															primary='Total Mastery Points'
-															secondary={masteryData.championPoints}
+															secondary={`${masteryData.championPoints} points`}
 														/>
 														<ListItemText
 															primary='Mastery Points Until LevelUP'
-															secondary={masteryData.championPointsUntilNextLevel}
+															secondary={`${masteryData.championPointsUntilNextLevel} points`}
 														/>
 													</List>
 												</Box>
