@@ -1,6 +1,4 @@
-import { getLuminance } from '@material-ui/core'
-
-let apiKey = 'RGAPI-6a0664c7-c99e-4c13-baba-ab0907f44801'
+let apiKey = 'RGAPI-d4f86ca5-50f5-432c-8bd9-9d8803bb1c81'
 
 export const getSummoner = async (name) => {
 	const respond = await fetch(

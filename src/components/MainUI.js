@@ -104,7 +104,7 @@ export default function MiniDrawer (props){
 						<MenuIcon />
 					</IconButton>
 					<Typography variant='h6' noWrap>
-						Mini variant drawer
+						League Utils
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -129,7 +129,7 @@ export default function MiniDrawer (props){
 				<Divider />
 				<List>
 					{[ 'Home', 'Profile', 'Next Champ', 'Match History' ].map((text, index) => (
-						<ListItem button key={text} component={Link} to='/mastery'>
+						<ListItem button key={text} component={Link} to={index % 2 === 0 ? '/mastery' : '/home'}>
 							<ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={text} />
 						</ListItem>

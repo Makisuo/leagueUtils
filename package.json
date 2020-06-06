@@ -1,6 +1,6 @@
 {
 	"name": "leagueutils",
-	"version": "0.1.1",
+	"version": "0.1.5",
 	"private": true,
 	"author": "Makisuo",
 	"main": "public/electron.js",
@@ -8,7 +8,8 @@
 	"build": {
 		"appId": "com.example.electron-cra",
 		"publish": {
-			"provider": "github"
+			"provider": "github",
+			"token": "e82d8ba8c701fc47fadf8c20bfd5e7ac4f6e1deb"
 		},
 		"files": [ "build/**/*", "node_modules/**/*" ],
 		"directories": {
@@ -36,7 +37,7 @@
 		"react-test": "react-scripts test --env=jsdom",
 		"react-eject": "react-scripts eject",
 		"electron-build": "electron-builder",
-		"release": "yarn react-build && electron-builder --win --mac --publish=always",
+		"release": "yarn react-build && electron-builder --win portable --mac --publish=always",
 		"build": "yarn react-build && yarn electron-build",
 		"start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
 	},
