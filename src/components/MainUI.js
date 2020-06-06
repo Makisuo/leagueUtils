@@ -2,19 +2,28 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import { Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton } from '@material-ui/core'
+import {
+	Drawer,
+	AppBar,
+	Toolbar,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	TextField,
+	Typography,
+	Divider,
+	IconButton,
+} from '@material-ui/core'
 
-import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import HomeIcon from '@material-ui/icons/Home'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
+import SkipNextIcon from '@material-ui/icons/SkipNext'
 import HelpIcon from '@material-ui/icons/Help'
 import MailIcon from '@material-ui/icons/Mail'
 import LensIcon from '@material-ui/icons/Lens'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+import HomeIcon from '@material-ui/icons/Home'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const drawerWidth = 240
 
@@ -76,6 +85,8 @@ export default function MiniDrawer (props){
 	const classes = useStyles()
 	const theme = useTheme()
 	const [ open, setOpen ] = React.useState(false)
+	const [ username, setUsername ] = React.useState('Makisuo UwU')
+	const [ previousUsername, setPreviousUsername ] = React.useState('Makisuo UwU')
 
 	const handleDrawerOpen = () => {
 		setOpen(true)
@@ -108,6 +119,18 @@ export default function MiniDrawer (props){
 					<Typography variant='h6' noWrap>
 						League Utils
 					</Typography>
+					<TextField
+						label='Username'
+						type='username'
+						id='username-input'
+						variant='filled'
+						onKeyUp={(event) => {
+							if (event.keyCode === 13) {
+								setPreviousUsername(username)
+								setUsername(document.getElementById('username-input').value)
+							}
+						}}
+					/>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -159,7 +182,9 @@ export default function MiniDrawer (props){
 					))}
 				</List>
 			</Drawer>
-			<main className={classes.content}>{props.children}</main>
+			<main className={classes.content}>
+				{React.cloneElement(props.children, { username: username, previousUsername: previousUsername })}
+			</main>
 		</div>
 	)
 }
