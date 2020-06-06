@@ -119,18 +119,14 @@ export default function MiniDrawer (props){
 					<Typography variant='h6' noWrap>
 						League Utils
 					</Typography>
-					<TextField
-						label='Username'
-						type='username'
-						id='username-input'
-						variant='filled'
-						onKeyUp={(event) => {
-							if (event.keyCode === 13) {
-								setPreviousUsername(username)
-								setUsername(document.getElementById('username-input').value)
-							}
+					<form
+						onSubmit={(e) => {
+							setPreviousUsername(username)
+							setUsername(document.getElementById('username-input').value)
 						}}
-					/>
+					>
+						<TextField label='Username' type='username' id='username-input' variant='filled' />
+					</form>
 				</Toolbar>
 			</AppBar>
 			<Drawer

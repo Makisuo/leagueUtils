@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useMemo } from 'react'
 import {
 	Typography,
 	makeStyles,
@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core'
 import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
 import CircularProgress from '../components/CircularProgress'
+
+let currentUser = ''
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -33,19 +35,25 @@ const NextLevelUp = (props) => {
 	const [ masteryData, setMasteryData ] = useState(null)
 	const [ championData, setChampioData ] = useState(null)
 
+	let { username, previousUsername } = props
+
 	const getMasteryData = async (name) => {
-		setMasteryData(await getNextChampionLevelUp(name))
+		let temp = await getNextChampionLevelUp(name)
+		setMasteryData(temp)
+		setChampioData(await getChampionById(temp.championId))
 	}
 	const getChampionData = async (id) => {
+		console.log('hi')
 		setChampioData(await getChampionById(id))
 	}
-	if (masteryData === null) {
-		getMasteryData('Makisuo UwU')
+
+	if (username !== currentUser) {
+		currentUser = username
+		getMasteryData(username).then()
 	}
-	if (masteryData !== null && championData === null) {
-		getChampionData(masteryData.championId)
-	}
-	// console.log(masteryData, championData)
+	// if (masteryData !== null && championData === null) {
+	// 	getChampionData(masteryData.championId)
+	// }
 	const classes = useStyles()
 	return (
 		<Fragment>

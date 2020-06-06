@@ -9,18 +9,13 @@ import NextLevelUpPage from './pages/NextLevelUpPage'
 import MasteryOverviewPage from './pages/MasteryOverviewPage'
 
 function App (){
-	const [ darkMode, setDarkMode ] = useState(true)
+	const theme = createMuiTheme({
+		palette: {
+			type: 'dark',
+			contrastThreshold: 5,
+		},
+	})
 
-	const theme = React.useMemo(
-		() =>
-			createMuiTheme({
-				palette: {
-					type: darkMode ? 'dark' : 'light',
-					contrastThreshold: 5,
-				},
-			}),
-		[ darkMode ],
-	)
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
