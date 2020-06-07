@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
 	},
+	content: {
+		marginLeft: theme.spacing(2),
+	},
 	paper: {
 		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
 		marginTop: theme.spacing(5),
@@ -81,7 +84,35 @@ const NextLevelUp = (props) => {
 												</Box>
 											</Box>
 											<Box display='flex' justifyContent='flex-start' m={1} p={1}>
-												<Box p={1}>
+												<Box
+													className={classes.content}
+													p={1}
+													border={1}
+													borderRadius={'10px'}
+													borderColor='secondary.main'
+												>
+													<List className={classes.list}>
+														<ListItemText
+															primary='Mastery Level'
+															secondary={`Level ${masteryData.championLevel}`}
+														/>
+														<ListItemText
+															primary='Total Mastery Points'
+															secondary={`${masteryData.championPoints} points`}
+														/>
+														<ListItemText
+															primary='Mastery Points Until LevelUP'
+															secondary={`${masteryData.championPointsUntilNextLevel} points`}
+														/>
+													</List>
+												</Box>
+												<Box
+													p={1}
+													border={1}
+													borderColor='secondary.main'
+													borderRadius={'10px'}
+													className={classes.content}
+												>
 													<List className={classes.list}>
 														<ListItemText
 															primary='Mastery Level'

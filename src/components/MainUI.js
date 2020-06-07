@@ -25,7 +25,7 @@ import LensIcon from '@material-ui/icons/Lens'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import {getSummoner} from '../utils/LeagueAPI'
+import { getSummoner } from '../utils/LeagueAPI'
 
 const drawerWidth = 240
 
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 	},
 	appBar: {
+		backgroundColor: theme.palette.background.paper,
 		zIndex: theme.zIndex.drawer + 1,
 		transition: theme.transitions.create([ 'width', 'margin' ], {
 			easing: theme.transitions.easing.sharp,
@@ -81,6 +82,12 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 	},
+	userInput: {
+		paddingLeft: theme.spacing(2),
+	},
+	title: {
+		flexGrow: 1,
+	},
 }))
 
 export default function MiniDrawer (props){
@@ -117,16 +124,17 @@ export default function MiniDrawer (props){
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant='h6' noWrap>
+					<Typography className={classes.title} variant='h6' noWrap>
 						League Utils
 					</Typography>
 					<form
+						className={classes.userInput}
 						autoComplete='on'
 						onSubmit={async (e) => {
 							e.preventDefault()
 							const exsist = await getSummoner(document.getElementById('username-input').value)
 							console.log(exsist)
-							if(exsist) {
+							if (exsist) {
 								setUsername(document.getElementById('username-input').value)
 							} else {
 								// setUsername(null)
@@ -138,7 +146,7 @@ export default function MiniDrawer (props){
 							placeholder={window.localStorage.getItem('username')}
 							type='username'
 							id='username-input'
-							variant='outlined'
+							// variant='outlined'
 						/>
 					</form>
 				</Toolbar>

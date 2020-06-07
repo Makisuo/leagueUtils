@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Route, Switch, HashRouter } from 'react-router-dom'
 import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core'
-// import Store from 'electron-store'
 
 import history from './utils/history'
 
@@ -15,11 +14,25 @@ function App (){
 	const theme = createMuiTheme({
 		palette: {
 			type: 'dark',
-			contrastThreshold: 5,
+			primary: {
+				main: '#312955',
+				light: '#8583c8',
+				dark: '#272d69',
+			},
+			secondary: {
+				main: '#3b2d6a',
+			},
+			background: {
+				default: '#1a123e',
+				paper: '#160D33',
+			},
 		},
 	})
-
+	if (!window.localStorage.getItem('username')) {
+		window.localStorage.setItem('username', 'Makisuo UwU')
+	}
 	const [ username, setUserName ] = useState(window.localStorage.getItem('username'))
+	console.log(theme.palette)
 
 	const setUser = (username) => {
 		window.localStorage.setItem('username', username)
