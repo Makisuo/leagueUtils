@@ -85,7 +85,7 @@ export default function MiniDrawer (props){
 	const classes = useStyles()
 	const theme = useTheme()
 	const [ open, setOpen ] = React.useState(false)
-	const { username, setUsername } = props
+	const { setUsername } = props
 
 	const handleDrawerOpen = () => {
 		setOpen(true)
@@ -119,12 +119,19 @@ export default function MiniDrawer (props){
 						League Utils
 					</Typography>
 					<form
+						autoComplete='on'
 						onSubmit={(e) => {
 							e.preventDefault()
 							setUsername(document.getElementById('username-input').value)
 						}}
 					>
-						<TextField label='Username' type='username' id='username-input' variant='filled' />
+						<TextField
+							label='Username'
+							placeholder={window.localStorage.getItem('username')}
+							type='username'
+							id='username-input'
+							variant='outlined'
+						/>
 					</form>
 				</Toolbar>
 			</AppBar>
