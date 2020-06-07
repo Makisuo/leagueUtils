@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { makeStyles, Container } from '@material-ui/core'
-import { getMasteryData } from '../utils/LeagueAPI'
+import { getMasteryData, getAllChampions } from '../utils/LeagueAPI'
 import Table from '../components/Table'
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +17,13 @@ const MasteryOverview = (props) => {
 	const classes = useStyles()
 
 	const [ data, setData ] = useState(null)
+	const [ championData, setChampionData ] = useState(null)
 	const [ currentUser, setCurrentUser ] = useState(null)
 
 	let { username } = props
 
 	const getData = async (name) => {
+		setChampionData(Object.values(await getAllChampions()))
 		setData(await getMasteryData(name))
 	}
 
@@ -32,7 +34,7 @@ const MasteryOverview = (props) => {
 	return (
 		<Fragment>
 			<Container className={classes.root}>
-				<Table data={data} />
+				<Table data={data} championData={championData} />
 			</Container>
 		</Fragment>
 	)

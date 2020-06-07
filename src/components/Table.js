@@ -13,9 +13,12 @@ import {
 	Typography,
 	Paper,
 	LinearProgress,
+	SvgIcon,
 } from '@material-ui/core'
 
-import { formatDate } from '../utils/basics'
+import HextechIcon from '../assets/hextech-icon.png'
+
+import { formatDate, getChampionNameById } from '../utils/basics'
 
 function createData (name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel){
 	return { name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel }
@@ -147,15 +150,20 @@ const useStyles = makeStyles((theme) => ({
 		top: 20,
 		width: 1,
 	},
+	image: {
+		width: 32,
+		height: 32,
+	},
 }))
 
 export default function EnhancedTable (props){
 	const classes = useStyles()
-	const [ order, setOrder ] = React.useState('asc')
-	const [ orderBy, setOrderBy ] = React.useState('calories')
+	const [ order, setOrder ] = React.useState('desc')
+	const [ orderBy, setOrderBy ] = React.useState('points')
 	const [ selected, setSelected ] = React.useState([])
 
-	const { data } = props
+	let { data, championData } = props
+
 	let rows = []
 
 	const formatData = (data) => {
@@ -170,7 +178,7 @@ export default function EnhancedTable (props){
 				lastPlayTime,
 			}) => {
 				return createData(
-					championId,
+					getChampionNameById(championId, championData),
 					championLevel,
 					championPoints,
 					chestGranted,
@@ -197,7 +205,7 @@ export default function EnhancedTable (props){
 		setSelected([])
 	}
 
-	if (data) {
+	if (data && championData) {
 		rows = formatData(data)
 	}
 
@@ -228,12 +236,30 @@ export default function EnhancedTable (props){
 										<TableCell align='right'>{row.name}</TableCell>
 										<TableCell align='right'>{row.level}</TableCell>
 										<TableCell align='right'>{row.points}</TableCell>
-										<TableCell align='right'>{row.chestAvailable.toString()}</TableCell>
+										<TableCell align='center'>
+											<img
+												className={classes.image}
+												style={
+													row.chestAvailable ? (
+														{
+															filter: 'grayscale(1)',
+															opacity: 0.2,
+														}
+													) : (
+														{}
+													)
+												}
+												src={HextechIcon}
+												alt='XD'
+											/>
+										</TableCell>
 										<TableCell align='right'>{row.lastPlayed}</TableCell>
 										<TableCell align='right'>
 											<LinearProgress variant='determinate' value={row.progress * 100} />
 										</TableCell>
-										<TableCell align='right'>{row.pointsToNextLevel}</TableCell>
+										<TableCell align='right'>
+											{row.pointsToNextLevel === 0 ? 'MASTERED' : row.pointsToNextLevel}
+										</TableCell>
 									</TableRow>
 								)
 							})}
