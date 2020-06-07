@@ -1,6 +1,6 @@
 {
 	"name": "leagueutils",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"private": true,
 	"author": "Makisuo",
 	"main": "public/electron.js",
