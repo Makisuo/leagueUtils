@@ -17,13 +17,6 @@ export const getMasteryData = async (name) => {
 	return result
 }
 
-export const getAllChampions = async () => {
-	const respond = await fetch(`http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json`)
-	const result = await respond.json()
-	console.log(result)
-	return result
-}
-
 export const getLowestChampionMastery = async (name) => {
 	const championArray = await getMasteryData(name)
 	const lowestChamp = championArray.reduce((element, currentElement) => {
@@ -50,6 +43,7 @@ export const getNextChampionLevelUp = async (name) => {
 	return lowestChamp
 }
 
+//Frontendrequest
 export const getChampionById = async (id) => {
 	const response = await fetch('http://ddragon.leagueoflegends.com/cdn/10.11.1/data/en_US/champion.json')
 	const { data } = await response.json()
@@ -58,4 +52,10 @@ export const getChampionById = async (id) => {
 			return data[i]
 		}
 	}
+}
+
+export const getAllChampions = async () => {
+	const respond = await fetch(`http://ddragon.leagueoflegends.com/cdn/10.11.1/data/en_US/champion.json`)
+	const result = await respond.json()
+	return result.data
 }
