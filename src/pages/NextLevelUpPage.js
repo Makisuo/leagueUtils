@@ -57,7 +57,7 @@ const NextLevelUp = (props) => {
 							<Fragment>
 								<Grid item xs={5}>
 									<img
-										src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.name}_0.jpg`}
+										src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
 										alt='Lol'
 									/>
 								</Grid>
