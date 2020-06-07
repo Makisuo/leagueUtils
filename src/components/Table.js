@@ -13,7 +13,6 @@ import {
 	Typography,
 	Paper,
 	LinearProgress,
-	SvgIcon,
 } from '@material-ui/core'
 
 import HextechIcon from '../assets/hextech-icon.png'
@@ -54,7 +53,7 @@ const headCells = [
 	{ id: 'name', numeric: true, disablePadding: false, label: 'Champion' },
 	{ id: 'level', numeric: true, disablePadding: false, label: 'Level' },
 	{ id: 'points', numeric: true, disablePadding: false, label: 'Points' },
-	{ id: 'chestAvailable', numeric: true, disablePadding: false, label: 'Chest Available' },
+	{ id: 'chestAvailable', numeric: true, disablePadding: false, label: 'Chest Earned' },
 	{ id: 'lastPlayed', numeric: true, disablePadding: false, label: 'Last Played' },
 	{ id: 'progress', numeric: true, disablePadding: false, label: 'Progress' },
 	{ id: 'pointsToNextLevel', numeric: true, disablePadding: false, label: 'Points to next level' },
@@ -240,7 +239,7 @@ export default function EnhancedTable (props){
 											<img
 												className={classes.image}
 												style={
-													row.chestAvailable ? (
+													!row.chestAvailable ? (
 														{
 															filter: 'grayscale(1)',
 															opacity: 0.2,
