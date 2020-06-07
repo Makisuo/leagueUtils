@@ -1,4 +1,4 @@
-let apiKey = 'RGAPI-d4f86ca5-50f5-432c-8bd9-9d8803bb1c81'
+let apiKey = 'RGAPI-c6f87d9a-2ce3-4669-8e61-10792bdef265'
 
 export const getSummoner = async (name) => {
 	const respond = await fetch(
