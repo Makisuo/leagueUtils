@@ -129,7 +129,7 @@ export default function MiniDrawer (props){
 							if(exsist) {
 								setUsername(document.getElementById('username-input').value)
 							} else {
-								setUsername(null)
+								// setUsername(null)
 							}
 						}}
 					>
