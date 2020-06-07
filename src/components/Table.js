@@ -12,6 +12,7 @@ import {
 	TableSortLabel,
 	Typography,
 	Paper,
+	LinearProgress,
 } from '@material-ui/core'
 
 import { formatDate } from '../utils/basics'
@@ -229,7 +230,9 @@ export default function EnhancedTable (props){
 										<TableCell align='right'>{row.points}</TableCell>
 										<TableCell align='right'>{row.chestAvailable.toString()}</TableCell>
 										<TableCell align='right'>{row.lastPlayed}</TableCell>
-										<TableCell align='right'>{row.progress}</TableCell>
+										<TableCell align='right'>
+											<LinearProgress variant='determinate' value={row.progress * 100} />
+										</TableCell>
 										<TableCell align='right'>{row.pointsToNextLevel}</TableCell>
 									</TableRow>
 								)

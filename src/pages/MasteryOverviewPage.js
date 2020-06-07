@@ -25,8 +25,6 @@ const MasteryOverview = (props) => {
 		setData(await getMasteryData(name))
 	}
 
-	console.log(username, currentUser)
-
 	if (currentUser !== username) {
 		setCurrentUser(username)
 		getData(username)
