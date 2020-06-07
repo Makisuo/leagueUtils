@@ -120,6 +120,7 @@ export default function MiniDrawer (props){
 					</Typography>
 					<form
 						onSubmit={(e) => {
+							e.preventDefault()
 							setUsername(document.getElementById('username-input').value)
 						}}
 					>
