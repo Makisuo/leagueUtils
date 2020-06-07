@@ -25,6 +25,8 @@ import LensIcon from '@material-ui/icons/Lens'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import {getSummoner} from '../utils/LeagueAPI'
+
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
@@ -120,9 +122,15 @@ export default function MiniDrawer (props){
 					</Typography>
 					<form
 						autoComplete='on'
-						onSubmit={(e) => {
+						onSubmit={async (e) => {
 							e.preventDefault()
-							setUsername(document.getElementById('username-input').value)
+							const exsist = await getSummoner(document.getElementById('username-input').value)
+							console.log(exsist)
+							if(exsist) {
+								setUsername(document.getElementById('username-input').value)
+							} else {
+								setUsername(null)
+							}
 						}}
 					>
 						<TextField

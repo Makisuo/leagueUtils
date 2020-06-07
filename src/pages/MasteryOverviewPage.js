@@ -27,10 +27,11 @@ const MasteryOverview = (props) => {
 		setData(await getMasteryData(name))
 	}
 
-	if (currentUser !== username) {
+	if (currentUser !== username && username) {
 		setCurrentUser(username)
 		getData(username)
 	}
+
 	return (
 		<Fragment>
 			<Container className={classes.root}>

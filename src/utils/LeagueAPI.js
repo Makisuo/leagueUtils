@@ -5,6 +5,10 @@ export const getSummoner = async (name) => {
 		`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${apiKey}`,
 	)
 	const result = await respond.json()
+	console.log(result)
+	if(result.status) {
+		return
+	}
 	return result
 }
 
