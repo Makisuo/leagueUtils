@@ -8,8 +8,7 @@
 	"build": {
 		"appId": "com.example.electron-cra",
 		"publish": {
-			"provider": "github",
-			"token": "e82d8ba8c701fc47fadf8c20bfd5e7ac4f6e1deb"
+			"provider": "github"
 		},
 		"files": [ "build/**/*", "node_modules/**/*" ],
 		"directories": {
