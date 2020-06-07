@@ -24,10 +24,13 @@ function App (){
 				<Main username={username} setUsername={setUserName}>
 					<Switch>
 						<Route path='/' exact render={(props) => <HomePage {...props} username={username} />} />
-						<Route path='/mastery' render={(props) => <NextLevelUpPage {...props} username={username} />} />
+						<Route
+							path='/mastery'
+							render={(props) => <MasteryOverviewPage {...props} username={username} />}
+						/>
 						<Route
 							path='/nextChamp'
-							render={(props) => <MasteryOverviewPage {...props} username={username} />}
+							render={(props) => <NextLevelUpPage {...props} username={username} />}
 						/>
 					</Switch>
 				</Main>
