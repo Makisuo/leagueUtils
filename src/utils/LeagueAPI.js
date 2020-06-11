@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:4000'
+const backendUrl = 'https://league-utils-backend.herokuapp.com'
 export const getSummoner = async (name) => {
 	const response = await fetch(`${backendUrl}/summoner/by-name/${name}`)
 	const result = await response.json()
