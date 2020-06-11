@@ -25,7 +25,7 @@ import LensIcon from '@material-ui/icons/Lens'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import { getSummoner } from '../utils/LeagueAPI'
+import { doesSummonerExist } from '../utils/LeagueAPI'
 
 const drawerWidth = 240
 
@@ -132,9 +132,8 @@ export default function MiniDrawer (props){
 						autoComplete='on'
 						onSubmit={async (e) => {
 							e.preventDefault()
-							const exsist = await getSummoner(document.getElementById('username-input').value)
-							console.log(exsist)
-							if (exsist) {
+							const exist = await doesSummonerExist(document.getElementById('username-input').value)
+							if (exist) {
 								setUsername(document.getElementById('username-input').value)
 							} else {
 								// setUsername(null)

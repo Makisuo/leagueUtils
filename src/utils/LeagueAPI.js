@@ -1,50 +1,34 @@
-let apiKey = 'RGAPI-c6f87d9a-2ce3-4669-8e61-10792bdef265'
-
+const backendUrl = 'http://localhost:4000'
 export const getSummoner = async (name) => {
-	const respond = await fetch(
-		`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${apiKey}`,
-	)
-	const result = await respond.json()
-	console.log(result)
-	if(result.status) {
-		return
-	}
+	const response = await fetch(`${backendUrl}/summoner/by-name/${name}`)
+	const result = await response.json()
 	return result
 }
 
+export const doesSummonerExist = async (name) => {
+	const response = await fetch(`${backendUrl}/summoner/by-name/${name}`)
+	if (response.status === 404) {
+		return false
+	}
+	return true
+}
+
 export const getMasteryData = async (name) => {
-	const { id } = await getSummoner(name)
-	const respond = await fetch(
-		`https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`,
-	)
+	const respond = await fetch(`${backendUrl}/mastery/by-name/${name}`)
 	const result = await respond.json()
 	return result
 }
 
 export const getLowestChampionMastery = async (name) => {
-	const championArray = await getMasteryData(name)
-	const lowestChamp = championArray.reduce((element, currentElement) => {
-		let { championPoints } = element
-		let { highestChampionPoints } = currentElement
-
-		return highestChampionPoints > championPoints ? element : currentElement
-	})
-	return lowestChamp
+	const respond = await fetch(`${backendUrl}/mastery/lowest/by-name/${name}`)
+	const result = await respond.json()
+	return result
 }
 
 export const getNextChampionLevelUp = async (name) => {
-	const championArray = await getMasteryData(name)
-	const lowestChamp = championArray.reduce((element, currentElement) => {
-		let { championPointsUntilNextLevel } = element
-		if (championPointsUntilNextLevel === 0) {
-			return currentElement
-		}
-		if (currentElement.championPointsUntilNextLevel === 0) {
-			return element
-		}
-		return championPointsUntilNextLevel < currentElement.championPointsUntilNextLevel ? element : currentElement
-	})
-	return lowestChamp
+	const respond = await fetch(`${backendUrl}/mastery/next/by-name/${name}`)
+	const result = await respond.json()
+	return result
 }
 
 //Frontendrequest
