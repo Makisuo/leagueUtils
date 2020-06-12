@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useMemo } from 'react'
+import React, { Fragment, useState } from 'react'
 import {
 	Typography,
 	makeStyles,
@@ -9,9 +9,12 @@ import {
 	Box,
 	List,
 	ListItemText,
+	IconButton,
 } from '@material-ui/core'
 import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
 import CircularProgress from '../components/CircularProgress'
+
+import CachedIcon from '@material-ui/icons/Cached'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -45,6 +48,10 @@ const NextLevelUp = (props) => {
 		setChampioData(await getChampionById(temp.championId))
 	}
 
+	const reloadData = async () => {
+		getMasteryData(currentUser)
+	}
+
 	if (username !== currentUser) {
 		setCurrentUser(username)
 		getMasteryData(username)
@@ -65,7 +72,16 @@ const NextLevelUp = (props) => {
 									/>
 								</Grid>
 								<Grid item xs={7}>
-									<Typography variant={'h2'}>{championData.name}</Typography>
+									<Box display='flex'>
+										<Box flexGrow={1}>
+											<Typography variant={'h2'}>{championData.name}</Typography>
+										</Box>
+										<Box>
+											<IconButton onClick={reloadData}>
+												<CachedIcon />
+											</IconButton>
+										</Box>
+									</Box>
 									<Grid container>
 										<Grid item xs={12}>
 											<Box display='flex' justifyContent='center' m={1} p={1}>
