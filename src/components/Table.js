@@ -19,8 +19,10 @@ import HextechIcon from '../assets/hextech-icon.png'
 
 import { formatDate, getChampionNameById } from '../utils/basics'
 
-function createData (name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel){
-	return { name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel }
+import Tokens from '../components/Tokens'
+
+function createData (name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned){
+	return { name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned }
 }
 
 function descendingComparator (a, b, orderBy){
@@ -162,7 +164,7 @@ export default function EnhancedTable (props){
 	const [ selected, setSelected ] = React.useState([])
 
 	let { data, championData } = props
-
+	console.log(data)
 	let rows = []
 
 	const formatData = (data) => {
@@ -175,6 +177,7 @@ export default function EnhancedTable (props){
 				championPointsUntilNextLevel,
 				chestGranted,
 				lastPlayTime,
+				tokensEarned,
 			}) => {
 				return createData(
 					getChampionNameById(championId, championData),
@@ -184,6 +187,7 @@ export default function EnhancedTable (props){
 					formatDate(new Date(lastPlayTime)),
 					championPointsSinceLastLevel / (championPointsSinceLastLevel + championPointsUntilNextLevel),
 					championPointsUntilNextLevel,
+					tokensEarned,
 				)
 			},
 		)
@@ -257,7 +261,11 @@ export default function EnhancedTable (props){
 											<LinearProgress variant='determinate' value={row.progress * 100} />
 										</TableCell>
 										<TableCell align='right'>
-											{row.pointsToNextLevel === 0 ? 'MASTERED' : row.pointsToNextLevel}
+											{row.pointsToNextLevel === 0 ? (
+												<Tokens level={row.level} tokens={row.tokensEarned} />
+											) : (
+												row.pointsToNextLevel
+											)}
 										</TableCell>
 									</TableRow>
 								)
