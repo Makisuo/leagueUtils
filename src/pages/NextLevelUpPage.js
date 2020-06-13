@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		marginLeft: theme.spacing(2),
 	},
+	image: {
+		border: `1px solid ${theme.palette.primary.main}`,
+	},
 	paper: {
 		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
 		marginTop: theme.spacing(5),
@@ -68,6 +71,7 @@ const NextLevelUp = (props) => {
 							<Fragment>
 								<Grid item xs={5}>
 									<img
+										className={classes.image}
 										src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
 										alt='Lol'
 									/>
@@ -76,6 +80,7 @@ const NextLevelUp = (props) => {
 									<Box display='flex'>
 										<Box flexGrow={1}>
 											<Typography variant={'h2'}>{championData.name}</Typography>
+											<Typography variant={'subtitle1'}>{championData.title}</Typography>
 										</Box>
 										<Box>
 											<IconButton onClick={reloadData}>

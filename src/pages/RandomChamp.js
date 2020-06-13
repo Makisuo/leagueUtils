@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		marginRight: theme.spacing(6),
 	},
+	image: {
+		border: `1px solid ${theme.palette.primary.main}`,
+	},
 	paper: {
 		marginTop: theme.spacing(5),
 		padding: theme.spacing(4),
@@ -31,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: 4,
 		height: '100%',
 		width: 200,
+	},
+	button: {
+		width: '40%',
+		height: '40px',
 	},
 }))
 
@@ -61,6 +68,7 @@ const Randomize = (props) => {
 						<Grid container spacing={1}>
 							<Grid item xs={5}>
 								<img
+									className={classes.image}
 									src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
 									alt='Lol'
 								/>
@@ -69,6 +77,7 @@ const Randomize = (props) => {
 								<Box display='flex'>
 									<Box>
 										<Typography variant={'h2'}>{championData.name}</Typography>
+										<Typography variant={'h6'}>{championData.title}</Typography>
 									</Box>
 								</Box>
 								<Grid container>
@@ -121,8 +130,13 @@ const Randomize = (props) => {
 								</Grid>
 							</Grid>
 							<Grid item xs={12}>
-								<Box>
-									<Button variant='contained' onClick={getRandom}>
+								<Box display='flex' justifyContent='center'>
+									<Button
+										className={classes.button}
+										variant='contained'
+										onClick={getRandom}
+										color='primary'
+									>
 										Get Random
 									</Button>
 								</Box>
