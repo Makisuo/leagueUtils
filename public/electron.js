@@ -20,6 +20,8 @@ function createWindow (){
 		width: 1800,
 		height: 1600,
 	})
+	mainWindow.setMenuBarVisibility(false)
+
 	if (isDev) {
 		mainWindow.webContents.openDevTools()
 	}
@@ -30,6 +32,10 @@ function createWindow (){
 		e.preventDefault()
 		require('electron').shell.openExternal(url)
 	})
+
+	autoUpdater.on('update-downloaded', (info) => {
+		autoUpdater.quitAndInstall()
+	})
 }
 
 app.on('ready', createWindow)
@@ -37,7 +43,6 @@ app.on('ready', createWindow)
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 	}
-	autoUpdater.quitAndInstall()
 	app.exit()
 })
 
