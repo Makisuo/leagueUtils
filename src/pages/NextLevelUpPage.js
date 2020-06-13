@@ -11,7 +11,7 @@ import {
 	ListItemText,
 	IconButton,
 } from '@material-ui/core'
-import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
+import { getNextChampionLevelUp, getChampionById } from '../utils/LeagueAPI'
 import CircularProgress from '../components/CircularProgress'
 
 import CachedIcon from '@material-ui/icons/Cached'
