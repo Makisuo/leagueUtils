@@ -9,6 +9,7 @@ import Main from './components/MainUI'
 import HomePage from './pages/HomePage'
 import NextLevelUpPage from './pages/NextLevelUpPage'
 import MasteryOverviewPage from './pages/MasteryOverviewPage'
+import { getCurrentVersion } from './utils/LeagueAPI'
 
 function App (){
 	const theme = createMuiTheme({
