@@ -120,9 +120,14 @@ const Randomize = (props) => {
 									</Grid>
 								</Grid>
 							</Grid>
-							<Grid item xs={12} />
+							<Grid item xs={12}>
+								<Box>
+									<Button variant='contained' onClick={getRandom}>
+										Get Random
+									</Button>
+								</Box>
+							</Grid>
 						</Grid>
-						<Button variant='contained'>Get Random</Button>
 					</Paper>
 				)}
 			</Container>
