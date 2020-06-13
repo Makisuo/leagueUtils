@@ -19,36 +19,12 @@ import HextechIcon from '../assets/hextech-icon.png'
 
 import { formatDate, getChampionNameById } from '../utils/basics'
 
-import Tokens from '../components/Tokens'
+import Tokens from './Tokens'
+
+import { getComparator, stableSort } from '../utils/tableUtils'
 
 function createData (name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned){
 	return { name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned }
-}
-
-function descendingComparator (a, b, orderBy){
-	if (b[orderBy] < a[orderBy]) {
-		return -1
-	}
-	if (b[orderBy] > a[orderBy]) {
-		return 1
-	}
-	return 0
-}
-
-function getComparator (order, orderBy){
-	return order === 'desc'
-		? (a, b) => descendingComparator(a, b, orderBy)
-		: (a, b) => -descendingComparator(a, b, orderBy)
-}
-
-function stableSort (array, comparator){
-	const stabilizedThis = array.map((el, index) => [ el, index ])
-	stabilizedThis.sort((a, b) => {
-		const order = comparator(a[0], b[0])
-		if (order !== 0) return order
-		return a[1] - b[1]
-	})
-	return stabilizedThis.map((el) => el[0])
 }
 
 const headCells = [
@@ -157,8 +133,8 @@ const useStyles = makeStyles((theme) => ({
 		width: 1,
 	},
 	image: {
-		width: 32,
-		height: 32,
+		width: 24,
+		height: 24,
 	},
 }))
 
@@ -169,7 +145,6 @@ export default function EnhancedTable (props){
 	const [ selected, setSelected ] = React.useState([])
 
 	let { data, championData } = props
-	console.log(data)
 	let rows = []
 
 	const formatData = (data) => {
@@ -258,7 +233,7 @@ export default function EnhancedTable (props){
 													)
 												}
 												src={HextechIcon}
-												alt='XD'
+												alt=''
 											/>
 										</TableCell>
 										<TableCell align='right'>{row.lastPlayed}</TableCell>

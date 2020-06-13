@@ -14,9 +14,10 @@ import {
 	Typography,
 	Divider,
 	IconButton,
+	Link as MaterialLink,
 } from '@material-ui/core'
 
-import MaterialLink from '@material-ui/core/Link'
+// import MaterialLink from '@material-ui/core/Link'
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -24,6 +25,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext'
 import LensIcon from '@material-ui/icons/Lens'
 import MenuIcon from '@material-ui/icons/Menu'
 import RandomizeIcon from '@material-ui/icons/InsertChart'
+import PersonIcon from '@material-ui/icons/Person'
 
 import { ReactComponent as LeagueLogo } from '../assets/svgs/leagueLogo.svg'
 import { ReactComponent as DiscordLogo } from '../assets/svgs/discordLogo.svg'
@@ -198,6 +200,12 @@ export default function MiniDrawer (props){
 						</ListItemIcon>
 						<ListItemText primary={'Get a random champion'} />
 					</ListItem>
+					<ListItem button component={Link} to={'/champOverview'}>
+						<ListItemIcon>
+							<PersonIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Overview of all Champion stats'} />
+					</ListItem>
 				</List>
 				<Divider />
 				<List>
@@ -207,7 +215,7 @@ export default function MiniDrawer (props){
 						</ListItemIcon>
 						<ListItemText primary={'Discord'} />
 					</ListItem>
-					<ListItem button>
+					<ListItem button component={MaterialLink} href='https://twitter.com/Krumel__' target='_blank'>
 						<ListItemIcon>
 							<TwitterLogo width={24} height={24} />
 						</ListItemIcon>

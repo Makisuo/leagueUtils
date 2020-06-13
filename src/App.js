@@ -8,6 +8,7 @@ import Main from './components/MainUI'
 
 import HomePage from './pages/HomePage'
 import NextLevelUpPage from './pages/NextLevelUpPage'
+import ChampOverviewPage from './pages/ChampOverviewPage'
 import MasteryOverviewPage from './pages/MasteryOverviewPage'
 import RandomizePage from './pages/RandomChamp'
 
@@ -55,6 +56,10 @@ function App (){
 							render={(props) => <NextLevelUpPage {...props} username={username} />}
 						/>
 						<Route path='/randomize' render={(props) => <RandomizePage {...props} username={username} />} />
+						<Route
+							path='/champOverview'
+							render={(props) => <ChampOverviewPage {...props} username={username} />}
+						/>
 					</Switch>
 				</Main>
 			</HashRouter>

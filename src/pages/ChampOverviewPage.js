@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import { makeStyles, Container } from '@material-ui/core'
-import { getMasteryData, getAllChampions } from '../utils/LeagueAPI'
-import MasteryTable from '../components/MasteryTable'
+
+import { getAllChampions } from '../utils/LeagueAPI'
+
+import ChampOverviewTable from '../components/ChampOverviewTable'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -16,26 +18,24 @@ const useStyles = makeStyles((theme) => ({
 const MasteryOverview = (props) => {
 	const classes = useStyles()
 
-	const [ data, setData ] = useState(null)
 	const [ championData, setChampionData ] = useState(null)
-	const [ currentUser, setCurrentUser ] = useState(null)
+	const [ isInit, setIsInit ] = useState(true)
 
-	let { username } = props
-
-	const getData = async (name) => {
+	const getData = async () => {
 		setChampionData(Object.values(await getAllChampions()))
-		setData(await getMasteryData(name))
 	}
 
-	if (currentUser !== username && username) {
-		setCurrentUser(username)
-		getData(username)
+	if (isInit === true) {
+		setIsInit(false)
+		getData()
 	}
+
+	console.log(championData)
 
 	return (
 		<Fragment>
 			<Container className={classes.root}>
-				<MasteryTable data={data} championData={championData} />
+				<ChampOverviewTable data={championData} />
 			</Container>
 		</Fragment>
 	)
