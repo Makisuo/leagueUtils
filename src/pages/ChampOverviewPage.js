@@ -30,8 +30,6 @@ const MasteryOverview = (props) => {
 		getData()
 	}
 
-	console.log(championData)
-
 	return (
 		<Fragment>
 			<Container className={classes.root}>

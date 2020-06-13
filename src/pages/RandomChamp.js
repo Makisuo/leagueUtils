@@ -56,10 +56,6 @@ const Randomize = (props) => {
 		getRandom()
 	}
 
-	console.log(championData)
-
-	let { username } = props
-
 	return (
 		<Fragment>
 			<Container className={classes.root}>

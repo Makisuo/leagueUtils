@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react'
-import { Typography, makeStyles, Container, Paper } from '@material-ui/core'
+import React, { Fragment, useState } from 'react'
+import { Typography, makeStyles, Container, Paper, Avatar, Box, Divider } from '@material-ui/core'
+import { getSummoner, getProfilIconByID, getCurrentVersion } from '../utils/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -9,33 +10,51 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: theme.spacing(1),
 		padding: theme.spacing(4),
 	},
+	avatar: {
+		border: `1.5px solid ${theme.palette.primary.main}`,
+		width: theme.spacing(12),
+		height: theme.spacing(12),
+	},
 }))
 
 const Home = (props) => {
 	const classes = useStyles()
+
+	const [ currentUser, setCurrentUser ] = useState(null)
+	const [ data, setData ] = useState(null)
+	const [ patch, setPatch ] = useState(null)
+
+	const { username } = props
+	const getUserData = async (username) => {
+		setPatch(await getCurrentVersion())
+		setData(await getSummoner(username))
+	}
+
+	if (username !== currentUser) {
+		setCurrentUser(username)
+		getUserData(username)
+	}
+
 	return (
 		<Fragment>
 			<Container className={classes.root}>
 				<Paper className={classes.paper}>
-					<Typography variant={'h4'}>{`Welcome!`}</Typography>
-					<Typography variant={'body1'}>
-						Thank you for using our services and products! You can use the the transentis portal to get
-						access to your transentis products, projects and manage diffrent services. Click on the burger
-						menu in the left corner and go to projects to get started. Or go to the help page to get more
-						advanced help with your products or get in direct contact with us.
-					</Typography>
+					<Box display='flex' justifyContent='center'>
+						{data && (
+							<Avatar
+								className={classes.avatar}
+								src={`https://cdn.communitydragon.org/${patch}/profile-icon/${data.profileIconId}`}
+							/>
+						)}
+					</Box>
+					<hr />
+					<Box display='flex' justifyContent='center' marginTop={3}>
+						<Typography variant={'h4'}>{`Welcome ${username}!`}</Typography>
+					</Box>
 				</Paper>
 				<Paper className={classes.paper}>
-					<Typography variant={'h4'}>Some basic other Text about Transentis and our mission </Typography>
-					<Typography variant={'body1'}>
-						Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-						ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-						dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-						sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-						justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-						ipsum dolor sit amet.
-					</Typography>
+					<Typography variant={'h4'}>Account Statitcs ETC </Typography>
+					<Typography variant={'body1'}>Comming soon</Typography>
 				</Paper>
 			</Container>
 		</Fragment>

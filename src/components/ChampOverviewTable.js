@@ -38,7 +38,6 @@ function EnhancedTableHead (props){
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property)
 	}
-	console.log(classes)
 	return (
 		<TableHead>
 			<TableRow>
@@ -178,7 +177,6 @@ export default function EnhancedTable (props){
 
 	if (data) {
 		rows = formatData(data)
-		console.log(rows)
 	}
 
 	return (
