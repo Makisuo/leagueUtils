@@ -19,13 +19,13 @@ import {
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
-import HelpIcon from '@material-ui/icons/Help'
-import MailIcon from '@material-ui/icons/Mail'
 import LensIcon from '@material-ui/icons/Lens'
-import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
+import RandomizeIcon from '@material-ui/icons/InsertChart'
 
 import { ReactComponent as LeagueLogo } from '../assets/svgs/leagueLogo.svg'
+import { ReactComponent as DiscordLogo } from '../assets/svgs/discordLogo.svg'
+import { ReactComponent as TwitterLogo } from '../assets/svgs/twitterLogo.svg'
 
 import { doesSummonerExist } from '../utils/LeagueAPI'
 
@@ -174,7 +174,7 @@ export default function MiniDrawer (props){
 				<List>
 					<ListItem button component={Link} to={'/'}>
 						<ListItemIcon>
-							<LeagueLogo width={32} height={32} />
+							<LeagueLogo width={24} height={24} />
 						</ListItemIcon>
 						<ListItemText primary={'Home'} />
 					</ListItem>
@@ -190,12 +190,24 @@ export default function MiniDrawer (props){
 						</ListItemIcon>
 						<ListItemText primary={'Mastery Overview'} />
 					</ListItem>
+					<ListItem button component={Link} to={'/randomize'}>
+						<ListItemIcon>
+							<RandomizeIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Get a random champion'} />
+					</ListItem>
 				</List>
 				<Divider />
 				<List>
 					{[ 'Help', 'Contact' ].map((text, index) => (
 						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? <HelpIcon /> : <MailIcon />}</ListItemIcon>
+							<ListItemIcon>
+								{index % 2 === 0 ? (
+									<DiscordLogo width={24} height={24} />
+								) : (
+									<TwitterLogo width={24} height={24} />
+								)}
+							</ListItemIcon>
 							<ListItemText primary={text} />
 						</ListItem>
 					))}
