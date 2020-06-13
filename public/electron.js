@@ -1,11 +1,11 @@
 const electron = require('electron')
 const { autoUpdater } = require('electron-updater')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
-const url = require('url')
 const isDev = require('electron-is-dev')
+
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
 
 let mainWindow
 
