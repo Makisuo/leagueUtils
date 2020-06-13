@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		marginRight: theme.spacing(6),
 	},
 	image: {
-		border: `1px solid ${theme.palette.primary.main}`,
+		border: `1.2px solid ${theme.palette.primary.main}`,
 	},
 	paper: {
 		marginTop: theme.spacing(5),
