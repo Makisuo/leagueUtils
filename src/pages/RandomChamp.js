@@ -1,171 +1,133 @@
 import React, { Fragment, useState } from 'react'
 import {
-	Typography,
 	makeStyles,
+	Box,
+	Button,
 	Container,
 	Paper,
-	Grid,
-	LinearProgress,
-	Box,
 	List,
+	ListItem,
 	ListItemText,
-	IconButton,
+	Typography,
+	Grid,
 } from '@material-ui/core'
-import { getSummoner, getNextChampionLevelUp, getChampionById, getMasteryData } from '../utils/LeagueAPI'
-import CircularProgress from '../components/CircularProgress'
-
-import CachedIcon from '@material-ui/icons/Cached'
+import { getRandomChampion } from '../utils/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
 	},
 	content: {
-		marginLeft: theme.spacing(2),
+		marginRight: theme.spacing(6),
 	},
 	paper: {
-		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
 		marginTop: theme.spacing(5),
 		padding: theme.spacing(4),
+		minHeight: 400,
 	},
 	list: {
 		padding: theme.spacing(2),
 		backgroundColor: theme.palette.primary.main,
 		borderRadius: 4,
+		height: '100%',
+		width: 200,
 	},
 }))
 
-const NextLevelUp = (props) => {
-	const [ masteryData, setMasteryData ] = useState(null)
-	const [ championData, setChampioData ] = useState(null)
-	const [ currentUser, setCurrentUser ] = useState(null)
+const Randomize = (props) => {
+	const classes = useStyles()
+
+	const [ intialCall, setIntialCall ] = useState(true)
+	const [ championData, setChampionData ] = useState(null)
+
+	const getRandom = async () => {
+		setChampionData(await getRandomChampion())
+	}
+
+	if (intialCall === true) {
+		setIntialCall(false)
+		getRandom()
+	}
+
+	console.log(championData)
 
 	let { username } = props
 
-	const getMasteryData = async (name) => {
-		let temp = await getNextChampionLevelUp(name)
-		setMasteryData(temp)
-		setChampioData(await getChampionById(temp.championId))
-	}
-
-	const reloadData = async () => {
-		getMasteryData(currentUser)
-	}
-
-	if (username !== currentUser) {
-		setCurrentUser(username)
-		getMasteryData(username)
-	}
-
-	const classes = useStyles()
 	return (
 		<Fragment>
 			<Container className={classes.root}>
-				<Paper className={classes.paper}>
-					<Grid container spacing={1}>
-						{championData && (
-							<Fragment>
-								<Grid item xs={5}>
-									<img
-										src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
-										alt='Lol'
-									/>
-								</Grid>
-								<Grid item xs={7}>
-									<Box display='flex'>
-										<Box flexGrow={1}>
-											<Typography variant={'h2'}>{championData.name}</Typography>
-										</Box>
-										<Box>
-											<IconButton onClick={reloadData}>
-												<CachedIcon />
-											</IconButton>
-										</Box>
+				{championData && (
+					<Paper className={classes.paper}>
+						<Grid container spacing={1}>
+							<Grid item xs={5}>
+								<img
+									src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
+									alt='Lol'
+								/>
+							</Grid>
+							<Grid item xs={7}>
+								<Box display='flex'>
+									<Box>
+										<Typography variant={'h2'}>{championData.name}</Typography>
 									</Box>
-									<Grid container>
-										<Grid item xs={12}>
-											<Box display='flex' justifyContent='center' m={1} p={1}>
-												<Box p={1}>
-													<CircularProgress
-														className={classes.circularProgress}
-														size={'9rem'}
-														thickness={6}
-														value={
-															masteryData.championPointsSinceLastLevel /
-															(masteryData.championPointsSinceLastLevel +
-																masteryData.championPointsUntilNextLevel) *
-															100
-														}
+								</Box>
+								<Grid container>
+									<Grid item xs={12}>
+										<Box display='flex' justifyContent='flex-start' m={1} p={1}>
+											<Box
+												p={1}
+												border={1}
+												borderColor='secondary.main'
+												borderRadius={'10px'}
+												className={classes.content}
+											>
+												<List className={classes.list}>
+													<ListItemText primary='About' secondary={`${championData.blurb}`} />
+												</List>
+											</Box>
+											<Box
+												className={classes.content}
+												p={1}
+												border={1}
+												borderRadius={'10px'}
+												borderColor='secondary.main'
+											>
+												<List className={classes.list}>
+													<ListItemText primary='Role' secondary={`${championData.tags}`} />
+													<ListItemText
+														primary='Type'
+														secondary={`${championData.partype}`}
 													/>
-												</Box>
+													<ListItemText
+														primary='Attack'
+														secondary={`${championData.info.attack}`}
+													/>
+													<ListItemText
+														primary='Defense'
+														secondary={`${championData.info.defense}`}
+													/>
+													<ListItemText
+														primary='Magic'
+														secondary={`${championData.info.magic}`}
+													/>
+													<ListItemText
+														primary='Difficulty'
+														secondary={`${championData.info.difficulty}`}
+													/>
+												</List>
 											</Box>
-											<Box display='flex' justifyContent='flex-start' m={1} p={1}>
-												<Box
-													className={classes.content}
-													p={1}
-													border={1}
-													borderRadius={'10px'}
-													borderColor='secondary.main'
-												>
-													<List className={classes.list}>
-														<ListItemText
-															primary='Mastery Level'
-															secondary={`Level ${masteryData.championLevel}`}
-														/>
-														<ListItemText
-															primary='Total Mastery Points'
-															secondary={`${masteryData.championPoints} points`}
-														/>
-														<ListItemText
-															primary='Mastery Points Until LevelUP'
-															secondary={`${masteryData.championPointsUntilNextLevel} points`}
-														/>
-													</List>
-												</Box>
-												<Box
-													p={1}
-													border={1}
-													borderColor='secondary.main'
-													borderRadius={'10px'}
-													className={classes.content}
-												>
-													<List className={classes.list}>
-														<ListItemText
-															primary='Mastery Level'
-															secondary={`Level ${masteryData.championLevel}`}
-														/>
-														<ListItemText
-															primary='Total Mastery Points'
-															secondary={`${masteryData.championPoints} points`}
-														/>
-														<ListItemText
-															primary='Mastery Points Until LevelUP'
-															secondary={`${masteryData.championPointsUntilNextLevel} points`}
-														/>
-													</List>
-												</Box>
-											</Box>
-										</Grid>
+										</Box>
 									</Grid>
 								</Grid>
-								<Grid item xs={12}>
-									<LinearProgress
-										variant='determinate'
-										value={
-											masteryData.championPointsSinceLastLevel /
-											(masteryData.championPointsSinceLastLevel +
-												masteryData.championPointsUntilNextLevel) *
-											100
-										}
-									/>
-								</Grid>
-							</Fragment>
-						)}
-					</Grid>
-				</Paper>
+							</Grid>
+							<Grid item xs={12} />
+						</Grid>
+						<Button variant='contained'>Get Random</Button>
+					</Paper>
+				)}
 			</Container>
 		</Fragment>
 	)
 }
 
-export default NextLevelUp
+export default Randomize

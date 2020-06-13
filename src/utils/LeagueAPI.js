@@ -56,3 +56,10 @@ export const getAllChampions = async () => {
 	const result = await respond.json()
 	return result.data
 }
+
+export const getRandomChampion = async () => {
+	const version = await getCurrentVersion()
+	const respond = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`)
+	const { data } = await respond.json()
+	return data[Object.keys(data)[Math.floor(Math.random() * Math.floor(Object.keys(data).length))]]
+}

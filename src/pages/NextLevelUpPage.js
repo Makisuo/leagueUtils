@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
 		marginTop: theme.spacing(5),
 		padding: theme.spacing(4),
+		minHeight: 400,
 	},
 	list: {
 		padding: theme.spacing(2),

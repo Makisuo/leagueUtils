@@ -9,7 +9,7 @@ import Main from './components/MainUI'
 import HomePage from './pages/HomePage'
 import NextLevelUpPage from './pages/NextLevelUpPage'
 import MasteryOverviewPage from './pages/MasteryOverviewPage'
-import { getCurrentVersion } from './utils/LeagueAPI'
+import RandomizePage from './pages/RandomChamp'
 
 function App (){
 	const theme = createMuiTheme({
@@ -33,11 +33,9 @@ function App (){
 		window.localStorage.setItem('username', 'Makisuo UwU')
 	}
 	const [ username, setUserName ] = useState(window.localStorage.getItem('username'))
-	console.log(theme.palette)
 
 	const setUser = (username) => {
 		window.localStorage.setItem('username', username)
-		console.log(window.localStorage)
 		setUserName(username)
 	}
 
@@ -56,6 +54,7 @@ function App (){
 							path='/nextChamp'
 							render={(props) => <NextLevelUpPage {...props} username={username} />}
 						/>
+						<Route path='/randomize' render={(props) => <RandomizePage {...props} username={username} />} />
 					</Switch>
 				</Main>
 			</HashRouter>
