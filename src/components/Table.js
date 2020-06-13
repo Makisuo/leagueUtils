@@ -116,9 +116,14 @@ const EnhancedTableToolbar = () => {
 	const classes = useToolbarStyles()
 
 	return (
-		<Box className={classes.root}>
-			<Typography className={classes.title} variant='h6' id='tableTitle' component='div'>
-				Champion Mastery Thingy
+		<Box display='flex' className={classes.root}>
+			<Box flexGrow={0.2}>
+				<Typography className={classes.title} variant='h6' id='tableTitle' component='div'>
+					Champion Mastery Thingy
+				</Typography>
+			</Box>
+			<Typography className={classes.title} variant='h5' id='tableTitle' component='div'>
+				{localStorage.getItem('username')}
 			</Typography>
 		</Box>
 	)

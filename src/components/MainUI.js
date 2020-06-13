@@ -25,6 +25,8 @@ import LensIcon from '@material-ui/icons/Lens'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import { ReactComponent as LeagueLogo } from '../assets/svgs/leagueLogo.svg'
+
 import { doesSummonerExist } from '../utils/LeagueAPI'
 
 const drawerWidth = 240
@@ -172,7 +174,7 @@ export default function MiniDrawer (props){
 				<List>
 					<ListItem button component={Link} to={'/'}>
 						<ListItemIcon>
-							<HomeIcon />
+							<LeagueLogo width={32} height={32} />
 						</ListItemIcon>
 						<ListItemText primary={'Home'} />
 					</ListItem>

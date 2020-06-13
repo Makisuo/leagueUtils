@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Typography, makeStyles, Container, Paper } from '@material-ui/core'
-import { getSummoner, getChampionMastery, getNextChampionLevelUp, getLowestChampionMastery } from '../utils/LeagueAPI'
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(4),
