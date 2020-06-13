@@ -38,12 +38,13 @@ function EnhancedTableHead (props){
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property)
 	}
-
+	console.log(classes)
 	return (
 		<TableHead>
 			<TableRow>
 				{headCells.map((headCell) => (
 					<TableCell
+						className={classes.tableHead}
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'default'}
@@ -112,10 +113,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(3),
 	},
 	container: {
-		// maxHeight: 700,
-	},
-	table: {
-		minWidth: 750,
+		maxHeight: window.innerHeight > 1000 ? window.innerHeight * 0.78 : window.innerHeight * 0.75,
 	},
 	visuallyHidden: {
 		border: 0,
@@ -131,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
 	image: {
 		width: 32,
 		height: 32,
+	},
+	tableHead: {
+		backgroundColor: theme.palette.background.paper,
 	},
 }))
 
@@ -185,12 +186,7 @@ export default function EnhancedTable (props){
 			<Paper className={classes.paper}>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer className={classes.container}>
-					<Table
-						// className={classes.table}
-						aria-labelledby='tableTitle'
-						size={'medium'}
-						aria-label='enhanced table'
-					>
+					<Table aria-labelledby='tableTitle' size={'medium'} aria-label='enhanced table' stickyHeader>
 						<EnhancedTableHead
 							classes={classes}
 							numSelected={selected.length}

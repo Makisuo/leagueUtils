@@ -145,6 +145,7 @@ export default function EnhancedTable (props){
 	const [ selected, setSelected ] = React.useState([])
 
 	let { data, championData } = props
+	console.log(data)
 	let rows = []
 
 	const formatData = (data) => {
