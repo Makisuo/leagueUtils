@@ -16,6 +16,8 @@ import {
 	IconButton,
 } from '@material-ui/core'
 
+import MaterialLink from '@material-ui/core/Link'
+
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
@@ -199,18 +201,18 @@ export default function MiniDrawer (props){
 				</List>
 				<Divider />
 				<List>
-					{[ 'Help', 'Contact' ].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? (
-									<DiscordLogo width={24} height={24} />
-								) : (
-									<TwitterLogo width={24} height={24} />
-								)}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
+					<ListItem button component={MaterialLink} href='https://discord.gg/agxM7pC' target='_blank'>
+						<ListItemIcon>
+							<DiscordLogo width={24} height={24} />
+						</ListItemIcon>
+						<ListItemText primary={'Discord'} />
+					</ListItem>
+					<ListItem button>
+						<ListItemIcon>
+							<TwitterLogo width={24} height={24} />
+						</ListItemIcon>
+						<ListItemText primary={'Twitter'} />
+					</ListItem>
 				</List>
 			</Drawer>
 			<main className={classes.content}>{props.children}</main>
