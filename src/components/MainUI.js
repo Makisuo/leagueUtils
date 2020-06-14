@@ -209,13 +209,25 @@ export default function MiniDrawer (props){
 				</List>
 				<Divider />
 				<List>
-					<ListItem button component={MaterialLink} href='https://discord.gg/agxM7pC' target='_blank'>
+					<ListItem
+						button
+						component={MaterialLink}
+						href='https://discord.gg/agxM7pC'
+						target='_blank'
+						color='inherit'
+					>
 						<ListItemIcon>
 							<DiscordLogo width={24} height={24} />
 						</ListItemIcon>
 						<ListItemText primary={'Discord'} />
 					</ListItem>
-					<ListItem button component={MaterialLink} href='https://twitter.com/Krumel__' target='_blank'>
+					<ListItem
+						button
+						component={MaterialLink}
+						href='https://twitter.com/Krumel__'
+						target='_blank'
+						color='inherit'
+					>
 						<ListItemIcon>
 							<TwitterLogo width={24} height={24} />
 						</ListItemIcon>
