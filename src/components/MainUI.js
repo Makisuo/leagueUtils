@@ -182,29 +182,35 @@ export default function MiniDrawer (props){
 						</ListItemIcon>
 						<ListItemText primary={'Home'} />
 					</ListItem>
+				</List>
+				<Divider />
+				<List>
 					<ListItem button component={Link} to={'/mastery'}>
 						<ListItemIcon>
 							<LensIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Mastery'} />
+						<ListItemText primary={'Mastery Overview'} />
 					</ListItem>
 					<ListItem button component={Link} to={'/nextChamp'}>
 						<ListItemIcon>
 							<SkipNextIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Mastery Overview'} />
+						<ListItemText primary={'Next Champ'} />
 					</ListItem>
+				</List>
+				<Divider />
+				<List>
 					<ListItem button component={Link} to={'/randomize'}>
 						<ListItemIcon>
 							<RandomizeIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Get a random champion'} />
+						<ListItemText primary={'Random Champ'} />
 					</ListItem>
 					<ListItem button component={Link} to={'/champOverview'}>
 						<ListItemIcon>
 							<PersonIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Overview of all Champion stats'} />
+						<ListItemText primary={'Champion Overview'} />
 					</ListItem>
 				</List>
 				<Divider />
