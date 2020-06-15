@@ -11,6 +11,7 @@ import NextLevelUpPage from './pages/NextLevelUpPage'
 import ChampOverviewPage from './pages/ChampOverviewPage'
 import MasteryOverviewPage from './pages/MasteryOverviewPage'
 import RandomizePage from './pages/RandomChamp'
+import UltimateBraveryPage from './pages/UltimateBravery'
 
 function App (){
 	const theme = createMuiTheme({
@@ -59,6 +60,10 @@ function App (){
 						<Route
 							path='/champOverview'
 							render={(props) => <ChampOverviewPage {...props} username={username} />}
+						/>
+						<Route
+							path='/ultimateBravery'
+							render={(props) => <UltimateBraveryPage {...props} username={username} />}
 						/>
 					</Switch>
 				</Main>

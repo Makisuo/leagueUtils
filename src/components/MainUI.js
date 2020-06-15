@@ -17,8 +17,6 @@ import {
 	Link as MaterialLink,
 } from '@material-ui/core'
 
-// import MaterialLink from '@material-ui/core/Link'
-
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
@@ -26,6 +24,7 @@ import LensIcon from '@material-ui/icons/Lens'
 import MenuIcon from '@material-ui/icons/Menu'
 import RandomizeIcon from '@material-ui/icons/InsertChart'
 import PersonIcon from '@material-ui/icons/Person'
+import RandomIcon from '@material-ui/icons/Help'
 
 import { ReactComponent as LeagueLogo } from '../assets/svgs/leagueLogo.svg'
 import { ReactComponent as DiscordLogo } from '../assets/svgs/discordLogo.svg'
@@ -202,15 +201,24 @@ export default function MiniDrawer (props){
 				<List>
 					<ListItem button component={Link} to={'/randomize'}>
 						<ListItemIcon>
-							<RandomizeIcon />
+							<RandomIcon />
 						</ListItemIcon>
 						<ListItemText primary={'Random Champ'} />
 					</ListItem>
 					<ListItem button component={Link} to={'/champOverview'}>
 						<ListItemIcon>
-							<PersonIcon />
+							<RandomizeIcon />
 						</ListItemIcon>
 						<ListItemText primary={'Champion Overview'} />
+					</ListItem>
+				</List>
+				<Divider />
+				<List>
+					<ListItem button component={Link} to={'/ultimateBravery'}>
+						<ListItemIcon>
+							<RandomIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Bronze Bravery'} />
 					</ListItem>
 				</List>
 				<Divider />
