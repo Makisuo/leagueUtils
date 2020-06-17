@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Container, Typography, Paper, Avatar } from '@material-ui/core'
+import { Container, Typography, Paper, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { getChampionIdByName } from '../utils/LeagueAPI'
 

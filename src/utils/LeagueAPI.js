@@ -51,12 +51,10 @@ export const getChampionById = async (id) => {
 }
 
 export const getChampionIdByName = async (name) => {
-	const data = await getAllChampions()
-	for (let i in data) {
-		if (data[i].name === name) {
-			return data[i].key
-		}
-	}
+	const version = await getCurrentVersion()
+	const response = await fetch(` https://cdn.communitydragon.org/${version}/champion/${name}/data`)
+	const data = await response.json()
+	return data.id
 }
 
 export const getAllChampions = async () => {
