@@ -50,6 +50,15 @@ export const getChampionById = async (id) => {
 	}
 }
 
+export const getChampionIdByName = async (name) => {
+	const data = await getAllChampions()
+	for (let i in data) {
+		if (data[i].name === name) {
+			return data[i].key
+		}
+	}
+}
+
 export const getAllChampions = async () => {
 	const version = await getCurrentVersion()
 	const reponse = await fetch(`http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`)
