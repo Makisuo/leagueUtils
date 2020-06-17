@@ -13,6 +13,7 @@ import {
 	Typography,
 	Paper,
 	LinearProgress,
+	Button,
 } from '@material-ui/core'
 
 import HextechIcon from '../assets/hextech-icon.png'
@@ -22,6 +23,7 @@ import { formatDate, getChampionNameById } from '../utils/basics'
 import Tokens from './Tokens'
 
 import { getComparator, stableSort } from '../utils/tableUtils'
+import { Link } from 'react-router-dom'
 
 function createData (name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned){
 	return { name, level, points, chestAvailable, lastPlayed, progress, pointsToNextLevel, tokensEarned }
@@ -216,7 +218,17 @@ export default function EnhancedTable (props){
 							{stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
 								return (
 									<TableRow hover tabIndex={-1} key={row.name}>
-										<TableCell align='right'>{row.name}</TableCell>
+										<TableCell align='right'>
+											<Link
+												to={{
+													pathname: '/champion',
+													state: row.name,
+												}}
+												style={{ textDecoration: 'none', color: 'inherit' }}
+											>
+												{row.name}
+											</Link>
+										</TableCell>
 										<TableCell align='right'>{row.level}</TableCell>
 										<TableCell align='right'>{row.points}</TableCell>
 										<TableCell align='center'>
