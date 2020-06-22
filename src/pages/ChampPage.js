@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Typography, Paper, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import { getChampionIdByName } from '../utils/LeagueAPI'
+import { getChampionIdByName, getMasteryDataOfChampion } from '../utils/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -20,7 +20,7 @@ const ChampPage = (props) => {
 	const [ masteryData, setMasteryData ] = useState(null)
 
 	const getChampionId = async () => {
-		console.log(await getChampionIdByName(champion))
+		console.log(await getMasteryDataOfChampion(props.username, champion))
 	}
 
 	if (champion !== currChampion) {
@@ -34,7 +34,7 @@ const ChampPage = (props) => {
 	return (
 		<Container className={classes.root}>
 			<Paper className={classes.paper}>
-				<Avatar />
+				<Avatar src={`http://ddragon.leagueoflegends.com/cdn/10.12.1/img/champion/${champion}.png`} />
 				<Typography variant='h5' align='center'>
 					{champion}
 				</Typography>
