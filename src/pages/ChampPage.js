@@ -1,7 +1,20 @@
 import React, { useState } from 'react'
-import { Container, Typography, Paper, Avatar, Box, Grid, Divider } from '@material-ui/core'
+import {
+	Container,
+	Typography,
+	Paper,
+	Avatar,
+	Box,
+	Grid,
+	Divider,
+	ExpansionPanel,
+	ExpansionPanelDetails,
+	ExpansionPanelSummary,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { getChampionIdByName, getMasteryDataOfChampion } from '../utils/LeagueAPI'
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -10,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginBottom: theme.spacing(1),
 		padding: theme.spacing(4),
+	},
+	image: {
+		borderRight: `0.1em solid ${theme.palette.divider}`,
+		paddingRight: theme.spacing(3),
 	},
 }))
 
@@ -43,6 +60,29 @@ const ChampPage = (props) => {
 							{champion}
 						</Typography>
 						<Divider />
+					</Grid>
+					<Grid item xs={12}>
+						<ExpansionPanel>
+							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+								<Typography>Champ Overview</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+									ex, sit amet blandit leo lobortis eget.
+								</Typography>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
+					</Grid>
+					<Grid item xs={5}>
+						<img
+							className={classes.image}
+							src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currChampion}_0.jpg`}
+							alt='Lol'
+						/>
+					</Grid>
+					<Grid item xs={7}>
+						<Typography variant='h5'>Overview</Typography>
 					</Grid>
 				</Grid>
 			</Paper>
