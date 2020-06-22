@@ -82,7 +82,8 @@ const ChampPage = (props) => {
 						/>
 					</Grid>
 					<Grid item xs={7}>
-						<Typography variant='h5'>Overview</Typography>
+						<Typography variant='h4'>Overview</Typography>
+						<Divider />
 					</Grid>
 				</Grid>
 			</Paper>
