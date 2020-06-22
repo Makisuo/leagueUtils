@@ -25,8 +25,11 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(4),
 	},
 	image: {
-		borderRight: `0.1em solid ${theme.palette.divider}`,
-		paddingRight: theme.spacing(3),
+		// borderRight: `0.1em solid ${theme.palette.divider}`,
+		// paddingRight: theme.spacing(3),
+	},
+	padding: {
+		paddingBottom: theme.spacing(3),
 	},
 }))
 
@@ -61,7 +64,17 @@ const ChampPage = (props) => {
 						</Typography>
 						<Divider />
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item xs={5}>
+						<img
+							className={classes.image}
+							src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currChampion}_0.jpg`}
+							alt='Lol'
+						/>
+					</Grid>
+					<Grid item xs={7}>
+						<Typography variant='h4'>Overview</Typography>
+						<Divider />
+						<Box className={classes.padding} />
 						<ExpansionPanel>
 							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 								<Typography>Champ Overview</Typography>
@@ -73,17 +86,28 @@ const ChampPage = (props) => {
 								</Typography>
 							</ExpansionPanelDetails>
 						</ExpansionPanel>
-					</Grid>
-					<Grid item xs={5}>
-						<img
-							className={classes.image}
-							src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currChampion}_0.jpg`}
-							alt='Lol'
-						/>
-					</Grid>
-					<Grid item xs={7}>
-						<Typography variant='h4'>Overview</Typography>
-						<Divider />
+						<ExpansionPanel>
+							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+								<Typography>Personal Stats</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+									ex, sit amet blandit leo lobortis eget.
+								</Typography>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
+						<ExpansionPanel>
+							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+								<Typography>Mastery Stats</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+									ex, sit amet blandit leo lobortis eget.
+								</Typography>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
 					</Grid>
 				</Grid>
 			</Paper>
