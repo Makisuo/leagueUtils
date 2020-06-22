@@ -26,6 +26,12 @@ export const getMasteryData = async (name) => {
 	return result
 }
 
+export const getMasteryDataOfChampion = async (username, champion) => {
+	const respond = await fetch(`${backendUrl}/mastery/by-champ/${champion}/by-name/${username}`)
+	const result = await respond.json()
+	return result
+}
+
 export const getLowestChampionMastery = async (name) => {
 	const respond = await fetch(`${backendUrl}/mastery/lowest/by-name/${name}`)
 	const result = await respond.json()
