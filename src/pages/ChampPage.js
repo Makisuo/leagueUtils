@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Typography, Paper, Avatar } from '@material-ui/core'
+import { Container, Typography, Paper, Avatar, Box, Grid, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { getChampionIdByName, getMasteryDataOfChampion } from '../utils/LeagueAPI'
 
@@ -20,24 +20,31 @@ const ChampPage = (props) => {
 	const [ masteryData, setMasteryData ] = useState(null)
 
 	const getChampionId = async () => {
-		console.log(await getMasteryDataOfChampion(props.username, champion))
+		setMasteryData(await getMasteryDataOfChampion(props.username, champion))
 	}
 
 	if (champion !== currChampion) {
 		if (props.location.state) {
 			setChampion(props.location.state)
 		}
-		getChampionId()
 		setCurrChampion(champion)
+		getChampionId()
 	}
 
 	return (
 		<Container className={classes.root}>
 			<Paper className={classes.paper}>
-				<Avatar src={`http://ddragon.leagueoflegends.com/cdn/10.12.1/img/champion/${champion}.png`} />
-				<Typography variant='h5' align='center'>
-					{champion}
-				</Typography>
+				<Grid container spacing={1} justify='center'>
+					<Grid item>
+						<Avatar src={`http://ddragon.leagueoflegends.com/cdn/10.12.1/img/champion/${champion}.png`} />
+					</Grid>
+					<Grid item xs={12}>
+						<Typography variant='h5' align='center'>
+							{champion}
+						</Typography>
+						<Divider />
+					</Grid>
+				</Grid>
 			</Paper>
 		</Container>
 	)
