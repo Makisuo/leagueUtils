@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import {
-	Container,
-	Typography,
-	Paper,
 	Avatar,
 	Box,
-	Grid,
+	Container,
 	Divider,
-	ExpansionPanel,
 	ExpansionPanelDetails,
 	ExpansionPanelSummary,
+	ExpansionPanel,
+	Grid,
+	List,
+	ListItemText,
+	Paper,
+	Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import { getChampionIdByName, getMasteryDataOfChampion } from '../utils/LeagueAPI'
+import { getChampionIdByName, getMasteryDataOfChampion, getChampionById, getChampionByName } from '../utils/LeagueAPI'
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
@@ -37,10 +39,12 @@ const ChampPage = (props) => {
 	const classes = useStyles()
 	const [ currChampion, setCurrChampion ] = useState(null)
 	const [ champion, setChampion ] = useState('Annie')
+	const [ championData, setChampionData ] = useState(null)
 	const [ masteryData, setMasteryData ] = useState(null)
 
 	const getChampionId = async () => {
 		setMasteryData(await getMasteryDataOfChampion(props.username, champion))
+		setChampionData(await getChampionByName(champion))
 	}
 
 	if (champion !== currChampion) {
@@ -50,7 +54,7 @@ const ChampPage = (props) => {
 		setCurrChampion(champion)
 		getChampionId()
 	}
-
+	console.log(championData)
 	return (
 		<Container className={classes.root}>
 			<Paper className={classes.paper}>
@@ -68,7 +72,7 @@ const ChampPage = (props) => {
 						<img
 							className={classes.image}
 							src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currChampion}_0.jpg`}
-							alt='Lol'
+							alt=''
 						/>
 					</Grid>
 					<Grid item xs={7}>
@@ -80,10 +84,35 @@ const ChampPage = (props) => {
 								<Typography>Champ Overview</Typography>
 							</ExpansionPanelSummary>
 							<ExpansionPanelDetails>
-								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-									ex, sit amet blandit leo lobortis eget.
-								</Typography>
+								{championData && (
+									<List className={classes.list}>
+										<ListItemText primary='Role' secondary={`${championData.roles}`} />
+										<ListItemText
+											primary='Crowd Control'
+											secondary={`${championData.playstyleInfo.crowdControl}`}
+										/>
+										<ListItemText
+											primary='Damage'
+											secondary={`${championData.playstyleInfo.damage}`}
+										/>
+										<ListItemText
+											primary='Tankiness'
+											secondary={`${championData.playstyleInfo.durability}`}
+										/>
+										<ListItemText
+											primary='Mobility'
+											secondary={`${championData.playstyleInfo.mobility}`}
+										/>
+										<ListItemText
+											primary='Utilitly'
+											secondary={`${championData.playstyleInfo.utility}`}
+										/>
+										<ListItemText
+											primary='Dificulty'
+											secondary={`${championData.tacticalInfo.difficulty}`}
+										/>
+									</List>
+								)}
 							</ExpansionPanelDetails>
 						</ExpansionPanel>
 						<ExpansionPanel>

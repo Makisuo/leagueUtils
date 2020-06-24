@@ -56,9 +56,18 @@ export const getChampionById = async (id) => {
 	}
 }
 
+export const getChampionByName = async (name) => {
+	const version = await getCurrentVersion()
+	const response = await fetch(`https://cdn.communitydragon.org/${version}/champion/${name}/data`)
+	const result = await response.json()
+	console.log(result)
+
+	return result
+}
+
 export const getChampionIdByName = async (name) => {
 	const version = await getCurrentVersion()
-	const response = await fetch(` https://cdn.communitydragon.org/${version}/champion/${name}/data`)
+	const response = await fetch(`https://cdn.communitydragon.org/${version}/champion/${name}/data`)
 	const data = await response.json()
 	return data.id
 }
