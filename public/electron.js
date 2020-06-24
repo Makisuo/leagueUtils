@@ -11,11 +11,11 @@ let mainWindow
 
 function createWindow (){
 	autoUpdater.checkForUpdatesAndNotify()
-	app.commandLine.appendSwitch('disable-web-security')
+	// app.commandLine.appendSwitch('disable-web-security')
 
 	mainWindow = new BrowserWindow({
 		'web-preferences': {
-			'web-security': false,
+			// 'web-security': false,
 		},
 		width: 1800,
 		height: 1600,
