@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { makeStyles, Container } from '@material-ui/core'
 
-import { getAllChampions } from '../utils/LeagueAPI'
+import { getAllChampions } from '../utils/API/LeagueAPI'
 
 import ChampOverviewTable from '../components/ChampOverviewTable'
 

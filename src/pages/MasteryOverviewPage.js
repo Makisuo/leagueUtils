@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { makeStyles, Container } from '@material-ui/core'
-import { getMasteryData, getAllChampions } from '../utils/LeagueAPI'
+import { getMasteryData, getAllChampions } from '../utils/API/LeagueAPI'
 import MasteryTable from '../components/MasteryTable'
 
 const useStyles = makeStyles((theme) => ({

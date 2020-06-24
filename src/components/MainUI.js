@@ -30,7 +30,7 @@ import { ReactComponent as LeagueLogo } from '../assets/svgs/leagueLogo.svg'
 import { ReactComponent as DiscordLogo } from '../assets/svgs/discordLogo.svg'
 import { ReactComponent as TwitterLogo } from '../assets/svgs/twitterLogo.svg'
 
-import { doesSummonerExist } from '../utils/LeagueAPI'
+import { doesSummonerExist } from '../utils/API/LeagueAPI'
 
 const drawerWidth = 240
 

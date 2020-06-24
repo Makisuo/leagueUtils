@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { makeStyles, Box, Button, Container, Paper, List, ListItemText, Typography, Grid } from '@material-ui/core'
-import { getRandomChampion } from '../utils/LeagueAPI'
+import { getRandomChampion } from '../utils/API/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {

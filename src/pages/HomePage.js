@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Typography, makeStyles, Container, Paper, Avatar, Box } from '@material-ui/core'
-import { getSummoner, getCurrentVersion } from '../utils/LeagueAPI'
+import { getSummoner, getCurrentVersion } from '../utils/API/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
