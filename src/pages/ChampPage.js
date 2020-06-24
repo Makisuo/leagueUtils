@@ -14,7 +14,12 @@ import {
 	Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import { getChampionIdByName, getMasteryDataOfChampion, getChampionById, getChampionByName } from '../utils/LeagueAPI'
+import {
+	getChampionIdByName,
+	getMasteryDataOfChampion,
+	getChampionById,
+	getChampionByName,
+} from '../utils/API/LeagueAPI'
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
