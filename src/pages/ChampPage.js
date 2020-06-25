@@ -21,6 +21,8 @@ import {
 	getChampionByName,
 } from '../utils/API/LeagueAPI'
 
+import { getUserStats } from '../utils/API/OPGGScraping'
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +61,7 @@ const ChampPage = (props) => {
 		setCurrChampion(champion)
 		getChampionId()
 	}
-	console.log(championData)
+	console.log(getUserStats())
 	return (
 		<Container className={classes.root}>
 			<Paper className={classes.paper}>
