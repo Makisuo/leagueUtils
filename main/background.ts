@@ -1,5 +1,6 @@
 import { app } from 'electron'
 import serve from 'electron-serve'
+const { autoUpdater } = require('electron-updater')
 
 import { createWindow } from './helpers'
 
@@ -14,10 +15,17 @@ if (isProd) {
 ;(async () => {
 	await app.whenReady()
 
+	autoUpdater.checkForUpdatesAndNotify()
+
+	autoUpdater.on('update-downloaded', (info) => {
+		autoUpdater.quitAndInstall()
+	})
 	const mainWindow = createWindow('main', {
 		width: 1000,
 		height: 600,
 	})
+
+	mainWindow.setMenuBarVisibility(false)
 
 	if (isProd) {
 		await mainWindow.loadURL('app://./home.html')

@@ -114,10 +114,12 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(3),
 	},
 	container: {
-		maxHeight:
-			window.innerHeight > 1000
-				? window.innerHeight * 0.78
-				: window.innerHeight * 0.75,
+		[theme.breakpoints.up('md')]: {
+			maxHeight: '78%',
+		},
+		[theme.breakpoints.up('sm')]: {
+			maxHeight: '75%',
+		},
 	},
 	visuallyHidden: {
 		border: 0,

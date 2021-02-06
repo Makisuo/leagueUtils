@@ -184,7 +184,7 @@ export default function MiniDrawer(props) {
 				</div>
 				<Divider />
 				<List>
-					<ListItem button component={Link} href={'/home'}>
+					<ListItem button component={Link} href={'/'}>
 						<ListItemIcon>
 							<LeagueLogo width={24} height={24} />
 						</ListItemIcon>
