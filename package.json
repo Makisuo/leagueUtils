@@ -1,56 +1,34 @@
 {
-	"name": "leagueutils",
-	"version": "0.2.2",
 	"private": true,
-	"author": "Makisuo",
-	"main": "public/electron.js",
-	"homepage": "./",
-	"build": {
-		"appId": "com.example.electron-cra",
-		"publish": {
-			"provider": "github",
-		},
-		"files": [ "build/**/*", "node_modules/**/*" ],
-		"directories": {
-			"buildResources": "assets"
-		}
+	"name": "my-nextron-app",
+	"description": "My application description",
+	"version": "1.0.0",
+	"author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+	"main": "app/background.js",
+	"scripts": {
+		"dev": "nextron",
+		"build": "nextron build",
+		"postinstall": "electron-builder install-app-deps"
 	},
 	"dependencies": {
-		"@material-ui/core": "^4.10.0",
-		"@material-ui/icons": "^4.9.1",
-		"@testing-library/jest-dom": "^4.2.4",
-		"@testing-library/react": "^9.3.2",
-		"@testing-library/user-event": "^7.1.2",
-		"cross-env": "^7.0.2",
-		"electron-is-dev": "^1.2.0",
-		"electron-updater": "^4.3.1",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-history": "^0.18.2",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "3.4.1"
-	},
-	"scripts": {
-		"react-start": "react-scripts start",
-		"react-build": "react-scripts build",
-		"react-test": "react-scripts test --env=jsdom",
-		"react-eject": "react-scripts eject",
-		"electron-build": "electron-builder",
-		"release": "yarn react-build && electron-builder --win --publish=always",
-		"build": "yarn react-build && yarn electron-build",
-		"start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
-	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
-	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"@material-ui/icons": "^4.11.2",
+		"electron-serve": "^1.0.0",
+		"electron-store": "^6.0.1",
+		"use-async-effect": "^2.2.2",
+		"zustand": "^3.3.1"
 	},
 	"devDependencies": {
-		"concurrently": "^5.2.0",
-		"electron": "^9.0.0",
-		"electron-builder": "^22.7.0",
-		"wait-on": "^5.0.0"
+		"@material-ui/core": "^4.11.1",
+		"@types/node": "^14.6.4",
+		"@types/react": "^16.9.49",
+		"@types/react-dom": "^16.9.8",
+		"electron": "^11.1.1",
+		"electron-builder": "^22.9.1",
+		"next": "^10.0.5",
+		"next-images": "^1.7.0",
+		"nextron": "^6.0.3",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"typescript": "^4.1.3"
 	}
 }
