@@ -6,6 +6,12 @@ import { theme } from '../lib/theme'
 import type { AppProps } from 'next/app'
 import { MainUI } from '../components'
 
+declare global {
+	interface Window {
+		electron: any
+	}
+}
+
 export default function (props: AppProps) {
 	const { Component, pageProps } = props
 

@@ -1,12 +1,18 @@
-import { app, dialog } from 'electron'
+import { app, ipcMain } from 'electron'
 import serve from 'electron-serve'
-import { autoUpdater } from 'electron-updater'
 
 import { createWindow } from './helpers'
 
 import { appUpdater } from './autoUpdater'
 
 const isProd: boolean = process.env.NODE_ENV === 'production'
+
+declare global {
+	interface Window {
+		ipcRenderer: any
+		electron: any
+	}
+}
 
 if (isProd) {
 	serve({ directory: 'app' })
@@ -31,7 +37,6 @@ if (isProd) {
 		const port = process.argv[2]
 		await mainWindow.loadURL(`http://localhost:${port}/`)
 		mainWindow.webContents.openDevTools()
-		appUpdater()
 	}
 })()
 

@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
+		marginTop: theme.spacing(7),
 	},
 	userInput: {
 		paddingLeft: theme.spacing(2),
@@ -223,11 +223,11 @@ export default function MiniDrawer(props) {
 				</List>
 				<Divider />
 				<List>
-					<ListItem button component={Link} href={'/ultimateBravery'}>
+					<ListItem button component={Link} href={'/hextechCrafting'}>
 						<ListItemIcon>
 							<RandomIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Bronze Bravery'} />
+						<ListItemText primary={'Hextech Crafting'} />
 					</ListItem>
 				</List>
 				<Divider />
