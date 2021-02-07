@@ -46,7 +46,7 @@ const Home = () => {
 					<Avatar
 						className={classes.avatar}
 						src={`https://cdn.communitydragon.org/${
-							patch || '10.13'
+							patch || '11.13'
 						}/profile-icon/${data?.profileIconId || 1}`}
 					/>
 				</Box>

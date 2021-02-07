@@ -4,10 +4,15 @@ const version = app.getVersion()
 const platform = os.platform() + '_' + os.arch() // usually returns darwin_64
 
 const updaterFeedURL =
-	'https://league-utils-release.herokuapp.com/' + platform + '/' + version
+	'https://league-utils-release.herokuapp.com/update/' +
+	platform +
+	'/' +
+	version
 
 export function appUpdater() {
+	console.log(updaterFeedURL)
 	autoUpdater.setFeedURL(updaterFeedURL)
+
 	/* Log whats happening
 	TODO send autoUpdater events to renderer so that we could console log it in developer tools
 	You could alsoe use nslog or other logging to see what's happening */
