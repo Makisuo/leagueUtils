@@ -1,13 +1,14 @@
 {
-	"private": true,
-	"name": "my-nextron-app",
-	"description": "My application description",
-	"version": "1.0.0",
-	"author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+	"private": false,
+	"name": "league-utils",
+	"description": "League Utils",
+	"version": "0.2.3",
+	"author": "David Granzin <david.granzin@code.berlin>",
 	"main": "app/background.js",
 	"scripts": {
 		"dev": "nextron",
 		"build": "nextron build",
+		"publish": "electron-builder --publish always",
 		"postinstall": "electron-builder install-app-deps"
 	},
 	"dependencies": {

@@ -1,6 +1,6 @@
 import { app } from 'electron'
 import serve from 'electron-serve'
-const { autoUpdater } = require('electron-updater')
+import { autoUpdater } from 'electron-updater'
 
 import { createWindow } from './helpers'
 

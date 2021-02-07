@@ -3,3 +3,6 @@ node_modules
 .next
 app
 dist
+
+electron-builder.yml
+electron-builder.yml
