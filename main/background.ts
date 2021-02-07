@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, dialog } from 'electron'
 import serve from 'electron-serve'
 import { autoUpdater } from 'electron-updater'
 
@@ -17,11 +17,6 @@ if (isProd) {
 ;(async () => {
 	await app.whenReady()
 
-	// autoUpdater.checkForUpdatesAndNotify()
-
-	// autoUpdater.on('update-downloaded', (info) => {
-	// 	autoUpdater.quitAndInstall()
-	// })
 	const mainWindow = createWindow('main', {
 		width: 1000,
 		height: 600,
@@ -36,6 +31,7 @@ if (isProd) {
 		const port = process.argv[2]
 		await mainWindow.loadURL(`http://localhost:${port}/`)
 		mainWindow.webContents.openDevTools()
+		appUpdater()
 	}
 })()
 

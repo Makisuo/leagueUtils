@@ -1,45 +1,38 @@
 import os from 'os'
-const { app, autoUpdater, dialog } = require('electron')
+import { app, dialog } from 'electron'
+import { autoUpdater } from 'electron-updater'
 const version = app.getVersion()
 const platform = os.platform() + '_' + os.arch() // usually returns darwin_64
 
-const updaterFeedURL =
-	'https://league-utils-release.herokuapp.com/update/' +
-	platform +
-	'/' +
-	version
+const updaterFeedURL = `https://league-utils-release.herokuapp.com/update?version=${version}&platform=${platform}`
 
 export function appUpdater() {
-	autoUpdater.setFeedURL(updaterFeedURL)
+	const log = require('electron-log')
+	log.transports.file.level = 'debug'
+	autoUpdater.logger = log
 
-	/* Log whats happening
-	TODO send autoUpdater events to renderer so that we could console log it in developer tools
-	You could alsoe use nslog or other logging to see what's happening */
-	autoUpdater.on('error', (err) => console.log(err))
-	autoUpdater.on('checking-for-update', () =>
+	autoUpdater.on('error', (err) => {
 		dialog.showMessageBox({
-			type: 'info',
-			title: 'Checking for updates',
+			type: 'error',
+			title: 'There was an error updating...',
+			message: err,
 		})
-	)
-	autoUpdater.on('update-available', () =>
-		dialog.showMessageBox(
-			{
+	})
+
+	autoUpdater.on('update-available', () => {
+		dialog
+			.showMessageBox({
 				type: 'info',
 				title: 'Found Updates',
 				message: 'Found updates, do you want update now?',
 				buttons: ['Sure', 'No'],
-			},
-			(buttonIndex) => {
-				if (buttonIndex === 0) {
+			})
+			.then(({ response }) => {
+				if (response === 0) {
 					autoUpdater.downloadUpdate()
 				}
-			}
-		)
-	)
-	autoUpdater.on('update-not-available', () =>
-		console.log('update-not-available')
-	)
+			})
+	})
 
 	// Ask the user if update is available
 	autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -56,8 +49,8 @@ export function appUpdater() {
 			})
 		}
 		// Ask user to update the app
-		dialog.showMessageBox(
-			{
+		dialog
+			.showMessageBox({
 				type: 'question',
 				buttons: ['Install and Relaunch', 'Later'],
 				defaultId: 0,
@@ -66,13 +59,12 @@ export function appUpdater() {
 					app.getName() +
 					' has been downloaded',
 				detail: message,
-			},
-			(response) => {
+			})
+			.then(({ response }) => {
 				if (response === 0) {
 					setTimeout(() => autoUpdater.quitAndInstall(), 1)
 				}
-			}
-		)
+			})
 	})
 	// init for updates
 	autoUpdater.checkForUpdates()

@@ -6,3 +6,5 @@ dist
 
 electron-builder.yml
 
+.env.local
+
