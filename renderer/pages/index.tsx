@@ -7,8 +7,6 @@ import { useStore } from '../stores/mainStore'
 import { getCurrentVersion, getSummoner } from '../utils/API/LeagueAPI'
 import useAsyncEffect from 'use-async-effect'
 
-import LCU from '../utils/API/LCU'
-
 const useStyles = makeStyles((theme) =>
 	createStyles({
 		root: {
@@ -37,8 +35,6 @@ const Home = () => {
 
 	useAsyncEffect(async () => {
 		setPatch(await getCurrentVersion())
-		await LCU.connect()
-		console.log(await LCU.getChampionsToDisenchant(false))
 	}, [])
 
 	useAsyncEffect(async () => {
