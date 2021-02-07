@@ -10,7 +10,6 @@ const updaterFeedURL =
 	version
 
 export function appUpdater() {
-	console.log(updaterFeedURL)
 	autoUpdater.setFeedURL(updaterFeedURL)
 
 	/* Log whats happening
@@ -18,9 +17,26 @@ export function appUpdater() {
 	You could alsoe use nslog or other logging to see what's happening */
 	autoUpdater.on('error', (err) => console.log(err))
 	autoUpdater.on('checking-for-update', () =>
-		console.log('checking-for-update')
+		dialog.showMessageBox({
+			type: 'info',
+			title: 'Checking for updates',
+		})
 	)
-	autoUpdater.on('update-available', () => console.log('update-available'))
+	autoUpdater.on('update-available', () =>
+		dialog.showMessageBox(
+			{
+				type: 'info',
+				title: 'Found Updates',
+				message: 'Found updates, do you want update now?',
+				buttons: ['Sure', 'No'],
+			},
+			(buttonIndex) => {
+				if (buttonIndex === 0) {
+					autoUpdater.downloadUpdate()
+				}
+			}
+		)
+	)
 	autoUpdater.on('update-not-available', () =>
 		console.log('update-not-available')
 	)
