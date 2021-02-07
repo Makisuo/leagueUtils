@@ -1,10 +1,5 @@
-import os from 'os'
 import { app, dialog } from 'electron'
 import { autoUpdater } from 'electron-updater'
-const version = app.getVersion()
-const platform = os.platform() + '_' + os.arch() // usually returns darwin_64
-
-const updaterFeedURL = `https://league-utils-release.herokuapp.com/update?version=${version}&platform=${platform}`
 
 export function appUpdater() {
 	const log = require('electron-log')
@@ -36,11 +31,8 @@ export function appUpdater() {
 
 	// Ask the user if update is available
 	autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-		let message =
-			app.getName() +
-			' ' +
-			releaseName +
-			' is now available. It will be installed the next time you restart the application.'
+		let message = `${app.getName()} ${releaseName}  is now available. It will be installed the next time you restart the application.`
+
 		if (releaseNotes) {
 			const splitNotes = releaseNotes.split(/[^\r]\n/)
 			message += '\n\nRelease notes:\n'
@@ -54,10 +46,7 @@ export function appUpdater() {
 				type: 'question',
 				buttons: ['Install and Relaunch', 'Later'],
 				defaultId: 0,
-				message:
-					'A new version of ' +
-					app.getName() +
-					' has been downloaded',
+				message: `A new version of ${app.getName()} has been downloaded`,
 				detail: message,
 			})
 			.then(({ response }) => {
@@ -67,5 +56,5 @@ export function appUpdater() {
 			})
 	})
 	// init for updates
-	autoUpdater.checkForUpdates()
+	autoUpdater.checkForUpdatesAndNotify()
 }
