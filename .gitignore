@@ -8,3 +8,4 @@ electron-builder.yml
 
 .env.local
 
+dev-app-update.yml

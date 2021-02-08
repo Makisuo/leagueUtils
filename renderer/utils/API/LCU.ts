@@ -1,8 +1,6 @@
-import { count } from 'console'
 import LCUConnector from 'lcu-connector'
 import { getChampionByKey } from './Ddragon'
-const https = require('https')
-const fetch = require('node-fetch')
+import https from 'https'
 
 let championByIdCache = {}
 let championJson = {}
