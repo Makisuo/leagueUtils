@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
 	Button,
 	Checkbox,
@@ -11,7 +12,6 @@ import {
 	Paper,
 } from '@material-ui/core'
 import { Box, Typography, Container } from '@material-ui/core'
-import React, { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
 import { Dialog } from '../components'
 import LCU from '../utils/API/LCU'
@@ -56,7 +56,7 @@ const hextechCrafting = () => {
 	const handleDialog = (open: boolean, event: string) => {
 		setDialogOpen(open)
 		if (event === 'AGREE') {
-			console.log(championsToDisenchant)
+			LCU.disenchantChampions(championsToDisenchant)
 		}
 	}
 
@@ -98,52 +98,72 @@ const hextechCrafting = () => {
 					>
 						<Box width='100%'>
 							<Typography variant='h3' align='center'>
-								Hextech Crafting
+								Champion Shard Crafting
 							</Typography>
 						</Box>
-						<FormControl
-							component='fieldset'
-							className={classes.formControl}
-						>
-							<FormLabel component='legend'>
-								Disenchant Options
-							</FormLabel>
-							<FormGroup>
-								<FormControlLabel
-									control={
-										<Checkbox
-											checked={disenchantAll}
-											onChange={handleChange}
-											name='disenchantAll'
-										/>
-									}
-									label='Disenchant All'
-								/>
-								<FormControlLabel
-									control={
-										<Checkbox
-											checked={disenchantUnowned}
-											disabled={disenchantAll}
-											onChange={handleChange}
-											name='disenchantUnowned'
-										/>
-									}
-									label='Disenchant Unowned'
-								/>
-								<FormControlLabel
-									control={
-										<Checkbox
-											checked={keepOnlyForLevel5And6}
-											disabled={disenchantAll}
-											onChange={handleChange}
-											name='keepOnlyForLevel5And6'
-										/>
-									}
-									label='Keep only for Level 5 and 6'
-								/>
-							</FormGroup>
-							<FormHelperText>Be careful</FormHelperText>
-						</FormControl>
+						<Box display='flex' flexDirection='row'>
+							<FormControl
+								component='fieldset'
+								className={classes.formControl}
+							>
+								<FormLabel component='legend'>
+									Disenchant Options
+								</FormLabel>
+								<FormGroup>
+									<FormControlLabel
+										control={
+											<Checkbox
+												checked={disenchantAll}
+												onChange={handleChange}
+												name='disenchantAll'
+											/>
+										}
+										label='Disenchant All'
+									/>
+									<FormControlLabel
+										control={
+											<Checkbox
+												checked={disenchantUnowned}
+												disabled={disenchantAll}
+												onChange={handleChange}
+												name='disenchantUnowned'
+											/>
+										}
+										label='Disenchant Unowned'
+									/>
+									<FormControlLabel
+										control={
+											<Checkbox
+												checked={keepOnlyForLevel5And6}
+												disabled={disenchantAll}
+												onChange={handleChange}
+												name='keepOnlyForLevel5And6'
+											/>
+										}
+										label='Keep only for Level 5 and 6'
+									/>
+								</FormGroup>
+								<FormHelperText>Be careful</FormHelperText>
+							</FormControl>
+							<Box maxWidth='50%'>
+								<Typography variant='h6' color='textSecondary'>
+									Usage
+								</Typography>
+								<Typography>
+									This tools help you disenchant your champion
+									shards faster and more reliable than doing
+									it by hand. In the standard mode (all
+									Checkboxes unchecked) you will disenchant
+									every champion shard of every champion you
+									already have level 7 and/or have more than 2
+									(1 for Level 6) left over. With the options
+									on the left you have the possibility to
+									disenchant all, disenchant champions you
+									don't own or only keep champion shard for
+									those you already have Level 5 or 6
+								</Typography>
+							</Box>
+						</Box>
 						<Button
 							variant='outlined'
 							onClick={() => startDisenchanting()}
