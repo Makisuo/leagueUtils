@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -23,7 +23,7 @@ function createData(name, hp, hp_18, mana, ad, as, ar, mr, ms, range) {
 const headCells = [
 	{ id: 'name', numeric: true, disablePadding: false, label: 'Champion' },
 	{ id: 'hp', numeric: true, disablePadding: false, label: 'HP' },
-	{ id: 'hp@18', numeric: true, disablePadding: false, label: 'HP@18' },
+	{ id: 'hp_18', numeric: true, disablePadding: false, label: 'HP@18' },
 	{ id: 'mana', numeric: true, disablePadding: false, label: 'Mana' },
 	{ id: 'ad', numeric: true, disablePadding: false, label: 'AD' },
 	{ id: 'as', numeric: true, disablePadding: false, label: 'AS' },
@@ -33,7 +33,7 @@ const headCells = [
 	{ id: 'range', numeric: true, disablePadding: false, label: 'Range' },
 ]
 
-function EnhancedTableHead(props) {
+const EnhancedTableHead = (props) => {
 	const { classes, order, orderBy, onRequestSort } = props
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property)
@@ -143,9 +143,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EnhancedTable(props) {
 	const classes = useStyles()
-	const [order, setOrder] = React.useState('desc')
-	const [orderBy, setOrderBy] = React.useState('points')
-	const [selected, setSelected] = React.useState([])
+	const [order, setOrder] = useState('desc')
+	const [orderBy, setOrderBy] = useState('points')
+	const [selected, setSelected] = useState([])
 
 	let { data } = props
 	let rows = []

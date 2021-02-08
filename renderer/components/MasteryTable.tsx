@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -13,6 +13,7 @@ import {
 	Typography,
 	Paper,
 	LinearProgress,
+	SortDirection,
 } from '@material-ui/core'
 
 import HextechIcon from '../public/images/hextech-icon.png'
@@ -71,7 +72,17 @@ const headCells = [
 	},
 ]
 
-function EnhancedTableHead(props) {
+interface EnhancedTableHeadProps {
+	classes: any
+	numSelected: number
+	onRequestSort: Function
+	onSelectAllClick: Function
+	order: any
+	orderBy: string
+	rowCount: number
+}
+
+const EnhancedTableHead = (props: EnhancedTableHeadProps) => {
 	const { classes, order, orderBy, onRequestSort } = props
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property)
@@ -108,16 +119,6 @@ function EnhancedTableHead(props) {
 	)
 }
 
-EnhancedTableHead.propTypes = {
-	classes: PropTypes.object.isRequired,
-	numSelected: PropTypes.number.isRequired,
-	onRequestSort: PropTypes.func.isRequired,
-	onSelectAllClick: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-	orderBy: PropTypes.string.isRequired,
-	rowCount: PropTypes.number.isRequired,
-}
-
 const useToolbarStyles = makeStyles((theme) => ({
 	root: {
 		padding: theme.spacing(2),
@@ -137,7 +138,7 @@ const EnhancedTableToolbar = () => {
 				</Typography>
 			</Box>
 			<Typography variant='h5' id='tableTitle' component='div'>
-				{username}
+				{username.toUpperCase()}
 			</Typography>
 		</Box>
 	)
@@ -177,10 +178,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function EnhancedTable(props) {
+	console.log(props)
 	const classes = useStyles()
-	const [order, setOrder] = React.useState('desc')
-	const [orderBy, setOrderBy] = React.useState('points')
-	const [selected, setSelected] = React.useState([])
+	const [order, setOrder] = useState('desc')
+	const [orderBy, setOrderBy] = useState('points')
+	const [selected, setSelected] = useState([])
 
 	let { data, championData } = props
 	let rows = []
@@ -256,13 +258,9 @@ export default function EnhancedTable(props) {
 							{stableSort(
 								rows,
 								getComparator(order, orderBy)
-							).map((row, index) => {
+							).map((row, index: number) => {
 								return (
-									<TableRow
-										hover
-										tabIndex={-1}
-										key={row.name}
-									>
+									<TableRow hover tabIndex={-1} key={index}>
 										<TableCell align='right'>
 											{/* <Link
 												to={{
@@ -297,7 +295,7 @@ export default function EnhancedTable(props) {
 														: {}
 												}
 												src={HextechIcon}
-												alt=''
+												alt='League Chest :D'
 											/>
 										</TableCell>
 										<TableCell align='right'>

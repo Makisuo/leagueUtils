@@ -96,12 +96,16 @@ const hextechCrafting = () => {
 						padding={3}
 						flexDirection='column'
 					>
-						<Box width='100%'>
+						<Box width='100%' marginBottom={2}>
 							<Typography variant='h3' align='center'>
-								Champion Shard Crafting
+								Hextech Crafting
 							</Typography>
 						</Box>
-						<Box display='flex' flexDirection='row'>
+						<Box
+							display='flex'
+							flexDirection='row'
+							marginBottom={2}
+						>
 							<FormControl
 								component='fieldset'
 								className={classes.formControl}
