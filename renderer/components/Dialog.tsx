@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import {
 	Button,
@@ -11,12 +11,12 @@ import {
 
 interface Props {
 	title: string
-	text: string
+	dialog: ReactElement
 	open: boolean
 	handler: (open: boolean, status?: string) => void
 }
 const AlertDialog = (props: Props) => {
-	const { title, text, open, handler } = props
+	const { title, dialog, open, handler } = props
 	return (
 		<Dialog
 			open={open}
@@ -27,7 +27,7 @@ const AlertDialog = (props: Props) => {
 			<DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
 			<DialogContent>
 				<DialogContentText id='alert-dialog-description'>
-					{text}
+					{dialog}
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>

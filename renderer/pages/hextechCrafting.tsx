@@ -20,6 +20,7 @@ import {
 import { Dialog } from '../components'
 
 import LCU from '../utils/API/LCU'
+import { BlueEssence } from '../components/FontIcons'
 
 const useStyles = makeStyles((theme) =>
 	createStyles({
@@ -184,8 +185,14 @@ const hextechCrafting = () => {
 			</Container>
 			<Dialog
 				title='Disenchant'
-				text={`Do you really wanna disenchant?
-            With agreeing to this you will disenchant ${count} Champion Shard and get will get in return ${beAmount}BE`}
+				dialog={
+					<Typography>
+						Do you really wanna disenchant? With agreeing to this
+						you will disenchant {count} Champion Shard and get will
+						get in return {beAmount}
+						{<BlueEssence></BlueEssence>}
+					</Typography>
+				}
 				open={dialogOpen}
 				handler={handleDialog}
 			></Dialog>
