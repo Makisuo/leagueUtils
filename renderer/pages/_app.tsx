@@ -1,10 +1,12 @@
 import React from 'react'
-import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { theme } from '../lib/theme'
-import type { AppProps } from 'next/app'
+
 import { MainUI } from '../components'
+
+import Head from 'next/head'
+import type { AppProps } from 'next/app'
 
 declare global {
 	interface Window {

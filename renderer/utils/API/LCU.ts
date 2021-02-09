@@ -1,11 +1,6 @@
-import {
-	authenticate,
-	request,
-	LeagueClient,
-	Credentials,
-} from 'league-connect'
-
+import { authenticate, LeagueClient, Credentials } from 'league-connect'
 import { getChampionByKey } from './Ddragon'
+
 import https from 'https'
 import { createBasicAuthToken } from '../basics'
 
