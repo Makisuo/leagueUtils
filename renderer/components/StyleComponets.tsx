@@ -4,10 +4,10 @@ interface Props {
 	color?: string
 	children: ReactNode
 }
-export const Bold: FC = ({ children, color }: Props) => (
+export const Bold = ({ children, color }: Props) => (
 	<span style={{ fontWeight: 'bold', color: color }}>{children}</span>
 )
 
-export const Colored: FC = ({ children, color }: Props) => (
+export const Colored = ({ children, color }: Props) => (
 	<span style={{ color: color }}>{children}</span>
 )

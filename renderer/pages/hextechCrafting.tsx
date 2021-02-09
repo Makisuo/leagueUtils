@@ -18,7 +18,7 @@ import {
 	Typography,
 } from '@material-ui/core'
 
-import { Bold, Dialog } from '../components'
+import { Bold, Colored, Dialog } from '../components'
 
 import LCU from '../utils/API/LCU'
 import { BlueEssence } from '../components/FontIcons'
@@ -189,8 +189,10 @@ const hextechCrafting = () => {
 				dialog={
 					<DialogContentText>
 						Do you really wanna disenchant? With agreeing to this
-						you will disenchant {count} Champion Shard and get will
-						get in return {<Bold>{beAmount}</Bold>}
+						you will disenchant{' '}
+						{<Bold color='purple'>{count} Champion Shards</Bold>}{' '}
+						and get will get in return{' '}
+						{<Colored color='#10c9e6'>{beAmount}</Colored>}
 						{<BlueEssence></BlueEssence>}
 					</DialogContentText>
 				}
