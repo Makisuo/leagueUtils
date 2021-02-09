@@ -10,7 +10,7 @@ import {
 interface Props extends CircularProgressProps {
 	value: number
 }
-export default function CircularProgressWithLabel(props: Props) {
+const CircularProgressWithLabel = (props: Props) => {
 	return (
 		<Box position='relative' display='inline-flex'>
 			<CircularProgress variant='determinate' {...props} />
@@ -33,3 +33,5 @@ export default function CircularProgressWithLabel(props: Props) {
 		</Box>
 	)
 }
+
+export default CircularProgressWithLabel

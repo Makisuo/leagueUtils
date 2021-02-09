@@ -16,7 +16,7 @@ interface Props {
 	level: number
 }
 
-export default function CircularProgressWithLabel(props: Props) {
+const MasteryTokens = (props: Props) => {
 	const classes = useStyles()
 	const { tokens, level } = props
 
@@ -69,3 +69,5 @@ export default function CircularProgressWithLabel(props: Props) {
 		</Box>
 	)
 }
+
+export default MasteryTokens
