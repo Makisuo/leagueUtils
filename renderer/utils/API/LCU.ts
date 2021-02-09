@@ -7,6 +7,7 @@ import {
 
 import { getChampionByKey } from './Ddragon'
 import https from 'https'
+import { createBasicAuthToken } from '../basics'
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
@@ -20,22 +21,20 @@ class LCU {
 			awaitConnection: true,
 			pollInterval: 2000,
 		})
-		this.authToken = `Basic ${Buffer.from(
-			`riot:${this.credentials.password}`
-		).toString('base64')}`
+		this.authToken = createBasicAuthToken('riot', this.credentials.password)
 
 		this.client = new LeagueClient(this.credentials)
 
-		this.client.on('connect', async (newCredentials) => {
+		this.client.on('connect', async (newCreds) => {
 			this.connected = true
-			this.authToken = `Basic ${Buffer.from(
-				`riot:${newCredentials.password}`
-			).toString('base64')}`
+			this.authToken = createBasicAuthToken('riot', newCreds.password)
+			this.credentials = newCreds
+			console.log('League Client Connected!')
 		})
 
 		this.client.on('disconnect', () => {
 			this.connected = false
-			console.log('Disconnected')
+			console.log('League Client Disconnected!')
 		})
 
 		this.client.start()
@@ -43,18 +42,6 @@ class LCU {
 
 	async disconnect() {
 		this.client.stop()
-	}
-
-	test = async () => {
-		console.log(
-			await request(
-				{
-					method: 'GET',
-					url: '/lol-summoner/v1/current-summoner',
-				},
-				this.credentials
-			)
-		)
 	}
 
 	getUser = async () => {

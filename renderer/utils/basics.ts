@@ -21,3 +21,7 @@ export const getChampionNameById = (id: number, data: any) => {
 		}
 	}
 }
+
+export const createBasicAuthToken = (username: string, password: string) => {
+	return `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+}
