@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-
-import Typography from '@material-ui/core/Typography'
-import { Container, Paper, Box, Avatar } from '@material-ui/core'
-import { useStore } from '../stores/mainStore'
-import { getCurrentVersion, getSummoner } from '../utils/API/LeagueAPI'
 import useAsyncEffect from 'use-async-effect'
+
+import { useStore } from '../stores/mainStore'
+
+import {
+	Container,
+	Paper,
+	Box,
+	Avatar,
+	Typography,
+	makeStyles,
+	createStyles,
+} from '@material-ui/core'
+
+import { getCurrentVersion, getSummoner } from '../utils/API/LeagueAPI'
 
 const useStyles = makeStyles((theme) =>
 	createStyles({

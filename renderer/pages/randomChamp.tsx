@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import {
 	makeStyles,
 	Box,
@@ -10,7 +11,7 @@ import {
 	Typography,
 	Grid,
 } from '@material-ui/core'
-import { useEffect } from 'react'
+
 import { getRandomChampion } from '../utils/API/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({

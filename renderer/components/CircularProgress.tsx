@@ -1,10 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import CircularProgress, {
+
+import {
+	Box,
+	CircularProgress,
 	CircularProgressProps,
-} from '@material-ui/core/CircularProgress'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
+	Typography,
+} from '@material-ui/core'
 
 interface Props extends CircularProgressProps {
 	value: number

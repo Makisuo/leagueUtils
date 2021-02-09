@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import useAsyncEffect from 'use-async-effect'
+
 import {
+	Box,
 	Button,
 	Checkbox,
+	Container,
 	createStyles,
 	FormControl,
 	FormControlLabel,
@@ -10,10 +14,11 @@ import {
 	FormLabel,
 	makeStyles,
 	Paper,
+	Typography,
 } from '@material-ui/core'
-import { Box, Typography, Container } from '@material-ui/core'
-import useAsyncEffect from 'use-async-effect'
+
 import { Dialog } from '../components'
+
 import LCU from '../utils/API/LCU'
 
 const useStyles = makeStyles((theme) =>

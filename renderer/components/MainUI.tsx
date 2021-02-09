@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+
+import { useStore } from '../stores/mainStore'
+
 import {
 	Drawer,
 	AppBar,
@@ -14,10 +16,10 @@ import {
 	IconButton,
 	Link as MaterialLink,
 	TextField,
+	makeStyles,
+	createStyles,
+	useTheme,
 } from '@material-ui/core'
-
-import Link from '../components/Link'
-
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
@@ -27,71 +29,75 @@ import RandomizeIcon from '@material-ui/icons/InsertChart'
 import RandomIcon from '@material-ui/icons/Help'
 
 import { LeagueLogo, DiscordLogo, TwitterLogo } from '../assets'
+
+import { Link } from '../components/'
+
 import { doesSummonerExist } from '../utils/API/LeagueAPI'
-import { useStore } from '../stores/mainStore'
 
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		display: 'flex',
-	},
-	appBar: {
-		backgroundColor: theme.palette.background.paper,
-		zIndex: theme.zIndex.drawer + 1,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-	},
-	appBarShift: {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
-	menuButton: {
-		marginRight: 36,
-	},
-	hide: {
-		display: 'none',
-	},
-	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-		whiteSpace: 'nowrap',
-	},
-	drawerOpen: {
-		width: drawerWidth,
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
-	drawerClose: {
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		overflowX: 'hidden',
-		width: theme.spacing(7) + 1,
-		[theme.breakpoints.up('sm')]: {
-			width: theme.spacing(9) + 1,
+const useStyles = makeStyles((theme) =>
+	createStyles({
+		root: {
+			display: 'flex',
 		},
-	},
-	content: {
-		flexGrow: 1,
-		marginTop: theme.spacing(7),
-	},
-	userInput: {
-		paddingLeft: theme.spacing(2),
-	},
-	title: {
-		flexGrow: 1,
-	},
-}))
+		appBar: {
+			backgroundColor: theme.palette.background.paper,
+			zIndex: theme.zIndex.drawer + 1,
+			transition: theme.transitions.create(['width', 'margin'], {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.leavingScreen,
+			}),
+		},
+		appBarShift: {
+			marginLeft: drawerWidth,
+			width: `calc(100% - ${drawerWidth}px)`,
+			transition: theme.transitions.create(['width', 'margin'], {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.enteringScreen,
+			}),
+		},
+		menuButton: {
+			marginRight: 36,
+		},
+		hide: {
+			display: 'none',
+		},
+		drawer: {
+			width: drawerWidth,
+			flexShrink: 0,
+			whiteSpace: 'nowrap',
+		},
+		drawerOpen: {
+			width: drawerWidth,
+			transition: theme.transitions.create('width', {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.enteringScreen,
+			}),
+		},
+		drawerClose: {
+			transition: theme.transitions.create('width', {
+				easing: theme.transitions.easing.sharp,
+				duration: theme.transitions.duration.leavingScreen,
+			}),
+			overflowX: 'hidden',
+			width: theme.spacing(7) + 1,
+			[theme.breakpoints.up('sm')]: {
+				width: theme.spacing(9) + 1,
+			},
+		},
+		content: {
+			flexGrow: 1,
+			marginTop: theme.spacing(7),
+		},
+		userInput: {
+			paddingLeft: theme.spacing(2),
+		},
+		title: {
+			flexGrow: 1,
+		},
+	})
+)
 
 export default function MiniDrawer(props) {
 	const classes = useStyles()

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+
+import { useStore } from '../stores/mainStore'
+
 import {
 	Typography,
 	makeStyles,
@@ -11,11 +14,11 @@ import {
 	ListItemText,
 	IconButton,
 } from '@material-ui/core'
-import { getNextChampionLevelUp, getChampionById } from '../utils/API/LeagueAPI'
+import CachedIcon from '@material-ui/icons/Cached'
+
 import { CircularProgress } from '../components'
 
-import CachedIcon from '@material-ui/icons/Cached'
-import { useStore } from '../stores/mainStore'
+import { getNextChampionLevelUp, getChampionById } from '../utils/API/LeagueAPI'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
