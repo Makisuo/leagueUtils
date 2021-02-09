@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
 
 import {
@@ -7,6 +7,7 @@ import {
 	Checkbox,
 	Container,
 	createStyles,
+	DialogContentText,
 	FormControl,
 	FormControlLabel,
 	FormGroup,
@@ -17,7 +18,7 @@ import {
 	Typography,
 } from '@material-ui/core'
 
-import { Dialog } from '../components'
+import { Bold, Dialog } from '../components'
 
 import LCU from '../utils/API/LCU'
 import { BlueEssence } from '../components/FontIcons'
@@ -186,12 +187,12 @@ const hextechCrafting = () => {
 			<Dialog
 				title='Disenchant'
 				dialog={
-					<Typography>
+					<DialogContentText>
 						Do you really wanna disenchant? With agreeing to this
 						you will disenchant {count} Champion Shard and get will
-						get in return {beAmount}
+						get in return {<Bold>{beAmount}</Bold>}
 						{<BlueEssence></BlueEssence>}
-					</Typography>
+					</DialogContentText>
 				}
 				open={dialogOpen}
 				handler={handleDialog}

@@ -11,7 +11,7 @@ import {
 
 interface Props {
 	title: string
-	dialog: ReactElement
+	dialog: ReactElement<typeof DialogContentText>
 	open: boolean
 	handler: (open: boolean, status?: string) => void
 }
@@ -25,11 +25,7 @@ const AlertDialog = (props: Props) => {
 			aria-describedby='alert-dialog-description'
 		>
 			<DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
-			<DialogContent>
-				<DialogContentText id='alert-dialog-description'>
-					{dialog}
-				</DialogContentText>
-			</DialogContent>
+			<DialogContent>{dialog}</DialogContent>
 			<DialogActions>
 				<Button
 					onClick={() => handler(false, 'DISAGREE')}

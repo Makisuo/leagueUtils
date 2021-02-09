@@ -4,3 +4,5 @@ export { default as CircularProgress } from './CircularProgress'
 export { default as Dialog } from './Dialog'
 export { default as Table } from './Table'
 export { default as MasteryTokens } from './MasteryTokens'
+
+export { Bold, Colored } from './StyleComponets'
