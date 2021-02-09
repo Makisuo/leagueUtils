@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 import {
 	Box,
 	Table,
@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core'
 
 import { getComparator, stableSort } from '../utils/tableUtils'
+import { EnhancedTableToolbar } from './Table'
 
 function createData(name, hp, hp_18, mana, ad, as, ar, mr, ms, range) {
 	return { name, hp, hp_18, mana, ad, as, ar, mr, ms, range }
@@ -80,29 +81,13 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired,
 }
 
-const useToolbarStyles = makeStyles((theme) => ({
-	root: {
-		padding: theme.spacing(2),
-	},
-}))
-
-const EnhancedTableToolbar = () => {
-	const classes = useToolbarStyles()
-
-	return (
-		<Box display='flex' className={classes.root}>
-			<Box flexGrow={0.2}>
-				<Typography variant='h6' id='tableTitle' component='div'>
-					Champion Overview
-				</Typography>
-			</Box>
-		</Box>
-	)
-}
-
-EnhancedTableToolbar.propTypes = {
-	numSelected: PropTypes.number.isRequired,
-}
+const useToolbarStyles = makeStyles((theme) =>
+	createStyles({
+		root: {
+			padding: theme.spacing(2),
+		},
+	})
+)
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -189,7 +174,7 @@ export default function EnhancedTable(props) {
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
-				<EnhancedTableToolbar numSelected={selected.length} />
+				<EnhancedTableToolbar title={'Champion Overview'} />
 				<TableContainer className={classes.container}>
 					<Table
 						aria-labelledby='tableTitle'
