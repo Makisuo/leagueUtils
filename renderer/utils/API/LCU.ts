@@ -1,26 +1,60 @@
-import LCUConnector from 'lcu-connector'
+import {
+	authenticate,
+	request,
+	LeagueClient,
+	Credentials,
+} from 'league-connect'
+
 import { getChampionByKey } from './Ddragon'
 import https from 'https'
 
-let championByIdCache = {}
-let championJson = {}
-
-const connector = new LCUConnector()
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 class LCU {
-	data: any
-	authToken = 'UNAUTHORIZED'
-
+	credentials: Credentials
+	client: LeagueClient
+	connected = false
+	authToken: string
 	async connect() {
-		const data = await new Promise((resolve) => {
-			connector.on('connect', resolve)
-			connector.start() // this causes myEvent
+		this.credentials = await authenticate({
+			awaitConnection: true,
+			pollInterval: 2000,
 		})
-		this.data = data
 		this.authToken = `Basic ${Buffer.from(
-			`${this.data.username}:${this.data.password}`
+			`riot:${this.credentials.password}`
 		).toString('base64')}`
+
+		this.client = new LeagueClient(this.credentials)
+
+		this.client.on('connect', async (newCredentials) => {
+			this.connected = true
+			this.authToken = `Basic ${Buffer.from(
+				`riot:${newCredentials.password}`
+			).toString('base64')}`
+		})
+
+		this.client.on('disconnect', () => {
+			this.connected = false
+			console.log('Disconnected')
+		})
+
+		this.client.start()
+	}
+
+	async disconnect() {
+		this.client.stop()
+	}
+
+	test = async () => {
+		console.log(
+			await request(
+				{
+					method: 'GET',
+					url: '/lol-summoner/v1/current-summoner',
+				},
+				this.credentials
+			)
+		)
 	}
 
 	getUser = async () => {
@@ -152,7 +186,7 @@ class LCU {
 			const req = https.request(
 				{
 					host: '127.0.0.1',
-					port: this.data.port,
+					port: this.credentials.port,
 					path,
 					method,
 					headers: {
