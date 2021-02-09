@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) =>
 			width: 24,
 			height: 24,
 		},
+		champLinks: {
+			textDecoration: 'none',
+		},
 	})
 )
 
@@ -79,6 +82,7 @@ const MasteryOverview = () => {
 							<TableRow hover tabIndex={-1} key={index}>
 								<TableCell align='right'>
 									<Typography
+										className={classes.champLinks}
 										component={'a'}
 										href={`/champion/${row.name}`}
 									>
