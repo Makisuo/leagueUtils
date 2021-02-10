@@ -52,7 +52,7 @@ const MasteryOverview = () => {
 		getData(username)
 	}, [username])
 
-	const getData = async (name) => {
+	const getData = async (name: string) => {
 		setChampionData(Object.values(await getAllChampions()))
 		setData(await getMasteryData(name))
 	}

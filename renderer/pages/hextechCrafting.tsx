@@ -18,7 +18,7 @@ import {
 	Typography,
 } from '@material-ui/core'
 
-import { Bold, Colored, Dialog } from '../components'
+import { Bold, Colored, Dialog, StyledText } from '../components'
 
 import LCU from '../utils/API/LCU'
 import { BlueEssence } from '../components/FontIcons'
@@ -160,24 +160,28 @@ const hextechCrafting = () => {
 								<Typography variant='h6' color='textSecondary'>
 									Usage
 								</Typography>
-								<Typography>
-									This tools help you{' '}
-									{<Bold>disenchant</Bold>} your champion
-									shards faster and more reliable than doing
-									it by hand. In the standard mode (all
-									Checkboxes unchecked) you will{' '}
-									{<Bold>disenchant</Bold>}
-									every champion shard of every champion you
-									already have level {<Bold>7</Bold>} and/or
-									have more than 2 (1 for Level{' '}
-									{<Bold>6</Bold>}) left over. With the
-									options on the left you have the possibility
-									to {<Bold>disenchant</Bold>} all,{' '}
-									{<Bold>disenchant</Bold>} champions you
-									don't own or only keep champion shard for
-									those you already have Level{' '}
-									{<Bold>5</Bold>} or {<Bold>6</Bold>}.
-								</Typography>
+								<StyledText
+									text={`This tool helps you disenchant your champion shards faster and more reliable than doing it by hand. In the standard mode (all Checkboxes unchecked) you will disenchant every champion shard of every champion you already have level 7 and/or have more than 2 (1 for Level 6) left over. With the options on the left you have the possibility to disenchant all, disenchant champions you don't own or only keep champion shard for those you already have Level 5 or 6.`}
+									keywords={[
+										{
+											keyword: 'disenchant',
+											bold: true,
+										},
+										{
+											keyword: '5',
+											bold: true,
+										},
+										{
+											keyword: '6',
+											bold: true,
+										},
+										{
+											keyword: '7',
+											bold: true,
+										},
+									]}
+									typography
+								></StyledText>
 							</Box>
 						</Box>
 						<Button
