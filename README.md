@@ -1,38 +1,11 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
+<p align="center"><img src="https://i.redd.it/6gc2d36nueg61.png"></p>
 
-## Usage
+# League Utils
 
-### Create an App
+Cool Programm for League
 
-```
-# with npm
-$ npm init nextron-app my-app --example with-typescript-material-ui
+## Installation
 
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript-material-ui
+Download the newest version from the [release](https://github.com/Makisuo/leagueUtils/releases/latest), download the exe file and run it on your machine.
 
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript-material-ui
-```
-
-### Install Dependencies
-
-```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
-
-### Use it
-
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
-```
+## License
