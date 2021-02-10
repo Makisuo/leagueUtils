@@ -9,8 +9,11 @@ import {
 
 interface Props extends CircularProgressProps {
 	value: number
+	imageWidth?: string
+	url?: string
 }
 const CircularProgressWithLabel = (props: Props) => {
+	const { value, url, imageWidth } = props
 	return (
 		<Box position='relative' display='inline-flex'>
 			<CircularProgress variant='determinate' {...props} />
@@ -24,11 +27,17 @@ const CircularProgressWithLabel = (props: Props) => {
 				alignItems='center'
 				justifyContent='center'
 			>
-				<Typography
-					variant='h6'
-					component='div'
-					color='textSecondary'
-				>{`${Math.round(props.value)}%`}</Typography>
+				{!url && (
+					<Typography
+						variant='h6'
+						component='div'
+						color='textSecondary'
+					>{`${Math.round(value)}%`}</Typography>
+				)}
+
+				{url && (
+					<img src={url} style={{ width: imageWidth || '70%' }}></img>
+				)}
 			</Box>
 		</Box>
 	)
