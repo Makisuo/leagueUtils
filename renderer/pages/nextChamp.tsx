@@ -13,6 +13,7 @@ import {
 	List,
 	ListItemText,
 	IconButton,
+	createStyles,
 } from '@material-ui/core'
 import CachedIcon from '@material-ui/icons/Cached'
 
@@ -20,28 +21,29 @@ import { CircularProgress } from '../components'
 
 import { getNextChampionLevelUp, getChampionById } from '../utils/API/LeagueAPI'
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		padding: theme.spacing(4),
-	},
-	content: {
-		marginLeft: theme.spacing(2),
-	},
-	image: {
-		border: `1px solid ${theme.palette.primary.main}`,
-	},
-	paper: {
-		// backgroundImage: 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg)',
-		marginTop: theme.spacing(5),
-		padding: theme.spacing(4),
-		minHeight: 400,
-	},
-	list: {
-		padding: theme.spacing(2),
-		backgroundColor: theme.palette.primary.main,
-		borderRadius: 4,
-	},
-}))
+const useStyles = makeStyles((theme) =>
+	createStyles({
+		root: {
+			padding: theme.spacing(4),
+		},
+		content: {
+			marginLeft: theme.spacing(2),
+		},
+		image: {
+			border: `1px solid ${theme.palette.primary.main}`,
+		},
+		paper: {
+			marginTop: theme.spacing(5),
+			padding: theme.spacing(4),
+			minHeight: 400,
+		},
+		list: {
+			padding: theme.spacing(2),
+			backgroundColor: theme.palette.primary.main,
+			borderRadius: 4,
+		},
+	})
+)
 
 const NextLevelUp = () => {
 	const username = useStore((state) => state.username)
@@ -49,13 +51,13 @@ const NextLevelUp = () => {
 	const [masteryData, setMasteryData] = useState(null)
 	const [championData, setChampioData] = useState(null)
 
-	const getMasteryData = async (name) => {
+	const getMasteryData = async (name: string) => {
 		let temp = await getNextChampionLevelUp(name)
 		setMasteryData(temp)
 		setChampioData(await getChampionById(temp.championId))
 	}
 
-	const reloadData = async () => {
+	const handleReload = async () => {
 		getMasteryData(username)
 	}
 
@@ -75,7 +77,7 @@ const NextLevelUp = () => {
 									<img
 										className={classes.image}
 										src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championData.id}_0.jpg`}
-										alt='Lol'
+										alt='League of Legends Champion Profile Picture'
 									/>
 								</Grid>
 								<Grid item xs={7}>
@@ -89,7 +91,7 @@ const NextLevelUp = () => {
 											</Typography>
 										</Box>
 										<Box>
-											<IconButton onClick={reloadData}>
+											<IconButton onClick={handleReload}>
 												<CachedIcon />
 											</IconButton>
 										</Box>

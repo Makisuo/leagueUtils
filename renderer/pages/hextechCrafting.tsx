@@ -161,17 +161,22 @@ const hextechCrafting = () => {
 									Usage
 								</Typography>
 								<Typography>
-									This tools help you disenchant your champion
+									This tools help you{' '}
+									{<Bold>disenchant</Bold>} your champion
 									shards faster and more reliable than doing
 									it by hand. In the standard mode (all
-									Checkboxes unchecked) you will disenchant
+									Checkboxes unchecked) you will{' '}
+									{<Bold>disenchant</Bold>}
 									every champion shard of every champion you
-									already have level 7 and/or have more than 2
-									(1 for Level 6) left over. With the options
-									on the left you have the possibility to
-									disenchant all, disenchant champions you
+									already have level {<Bold>7</Bold>} and/or
+									have more than 2 (1 for Level{' '}
+									{<Bold>6</Bold>}) left over. With the
+									options on the left you have the possibility
+									to {<Bold>disenchant</Bold>} all,{' '}
+									{<Bold>disenchant</Bold>} champions you
 									don't own or only keep champion shard for
-									those you already have Level 5 or 6
+									those you already have Level{' '}
+									{<Bold>5</Bold>} or {<Bold>6</Bold>}.
 								</Typography>
 							</Box>
 						</Box>
@@ -188,12 +193,21 @@ const hextechCrafting = () => {
 				title='Disenchant'
 				dialog={
 					<DialogContentText>
-						Do you really wanna disenchant? With agreeing to this
-						you will disenchant{' '}
-						{<Bold color='purple'>{count} Champion Shards</Bold>}{' '}
-						and get will get in return{' '}
-						{<Colored color='#10c9e6'>{beAmount}</Colored>}
-						{<BlueEssence></BlueEssence>}
+						Do you really wanna {<Bold>disenchant</Bold>}? With
+						agreeing to this you will disenchant{' '}
+						{
+							<Bold fontSize={'1.2rem'} color='purple'>
+								{count} Champion Shards
+							</Bold>
+						}{' '}
+						and will get{' '}
+						{
+							<Colored fontSize={'1.1rem'} color='#10c9e6'>
+								{beAmount}
+								<BlueEssence></BlueEssence>
+							</Colored>
+						}{' '}
+						in return.
 					</DialogContentText>
 				}
 				open={dialogOpen}
