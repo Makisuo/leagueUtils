@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const formatDate = (date: string) => {
 	let d = new Date(date),
 		month = '' + (d.getMonth() + 1),
@@ -24,4 +26,12 @@ export const getChampionNameById = (id: number, data: any): string => {
 
 export const createBasicAuthToken = (username: string, password: string) => {
 	return `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+}
+
+export const filterArray = (array: [any], column: string, filter) => {
+	return _.filter(array, (data) => {
+		if (data[column].toLowerCase().includes(filter.toLowerCase())) {
+			return data
+		}
+	})
 }
