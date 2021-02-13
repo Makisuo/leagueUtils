@@ -14,6 +14,7 @@ interface Props extends CircularProgressProps {
 }
 const CircularProgressWithLabel = (props: Props) => {
 	const { value, url, imageWidth, ...rest } = props
+
 	return (
 		<Box position='relative' display='inline-flex'>
 			<CircularProgress variant='determinate' value={value} {...rest} />

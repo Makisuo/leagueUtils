@@ -14,7 +14,7 @@ export const formatDate = (date: string) => {
 	return [day, month, year].join('/') + `, ${hours}:${minutes}`
 }
 
-export const getChampionNameById = (id: number, data: any) => {
+export const getChampionNameById = (id: number, data: any): string => {
 	for (let i = 0; i < data.length; i++) {
 		if (parseInt(data[i].key) === id) {
 			return data[i].name

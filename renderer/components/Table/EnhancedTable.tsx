@@ -47,6 +47,9 @@ interface Props {
 	setOrder: Function
 	orderBy: string
 	setOrderBy: Function
+	//These props are to filter for searches
+	search?: boolean
+	setSearchArgs?: Function
 }
 const EnhancedTable = (props: Props) => {
 	const classes = useStyles()
@@ -59,6 +62,8 @@ const EnhancedTable = (props: Props) => {
 		orderBy,
 		setOrderBy,
 		children,
+		search,
+		setSearchArgs,
 	} = props
 
 	const handleRequestSort = (event, property) => {
@@ -73,6 +78,8 @@ const EnhancedTable = (props: Props) => {
 				<EnhancedTableToolbar
 					title={tableToolBar.title}
 					username={tableToolBar.username}
+					search={search}
+					setSearchArgs={setSearchArgs}
 				/>
 				<TableContainer>
 					<Table

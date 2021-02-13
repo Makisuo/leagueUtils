@@ -21,6 +21,8 @@ import { formatDate, getChampionNameById } from '../utils/basics'
 import { getMasteryData, getAllChampions } from '../utils/API/LeagueAPI'
 
 import HextechIcon from '../public/images/hextech-icon.png'
+import { reduce } from 'lodash'
+import _ from 'lodash'
 
 const useStyles = makeStyles((theme) =>
 	createStyles({
@@ -48,6 +50,8 @@ const MasteryOverview = () => {
 	const [order, setOrder] = useState('desc')
 	const [orderBy, setOrderBy] = useState('points')
 
+	const [searchArgs, setSearchArgs] = useState('')
+
 	useAsyncEffect(async () => {
 		getData(username)
 	}, [username])
@@ -70,11 +74,13 @@ const MasteryOverview = () => {
 				setOrder={setOrder}
 				orderBy={orderBy}
 				setOrderBy={setOrderBy}
+				search
+				setSearchArgs={setSearchArgs}
 			>
 				<TableBody>
 					{stableSort(
 						data && championData
-							? formatData(data, championData)
+							? formatData(data, championData, searchArgs)
 							: [],
 						getComparator(order, orderBy)
 					).map((row, index: number) => {
@@ -161,8 +167,8 @@ const headCells = [
 	},
 ]
 
-const formatData = (data, championData) => {
-	return data.map(
+const formatData = (data: any, championData: any, searchArgs: string) => {
+	const formattedData = data.map(
 		({
 			championId,
 			championLevel,
@@ -187,6 +193,11 @@ const formatData = (data, championData) => {
 			)
 		}
 	)
+	return _.filter(formattedData, (data) => {
+		if (data.name.toLowerCase().includes(searchArgs.toLowerCase())) {
+			return data
+		}
+	})
 }
 const createData = (
 	name: string,
