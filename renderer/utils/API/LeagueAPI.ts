@@ -1,3 +1,5 @@
+import { MasteryOfChampion, Summoner } from '../../types/BackendTypes'
+
 const backendUrl = 'https://league-utils-backend.herokuapp.com'
 
 export const getCurrentVersion = async () => {
@@ -9,13 +11,13 @@ export const getCurrentVersion = async () => {
 	return result[1]
 }
 
-export const getSummoner = async (name: string) => {
+export const getSummoner = async (name: string): Promise<Summoner> => {
 	const response = await fetch(`${backendUrl}/summoner/by-name/${name}`)
 	const result = await response.json()
 	return result
 }
 
-export const doesSummonerExist = async (name: string) => {
+export const doesSummonerExist = async (name: string): Promise<boolean> => {
 	const response = await fetch(`${backendUrl}/summoner/by-name/${name}`)
 	if (response.status === 404) {
 		return false
@@ -23,7 +25,9 @@ export const doesSummonerExist = async (name: string) => {
 	return true
 }
 
-export const getMasteryData = async (name: string) => {
+export const getMasteryData = async (
+	name: string
+): Promise<Array<MasteryOfChampion>> => {
 	const respond = await fetch(`${backendUrl}/mastery/by-name/${name}`)
 	const result = await respond.json()
 	return result
@@ -32,7 +36,7 @@ export const getMasteryData = async (name: string) => {
 export const getMasteryDataOfChampion = async (
 	username: string,
 	champion: string
-) => {
+): Promise<MasteryOfChampion> => {
 	const respond = await fetch(
 		`${backendUrl}/mastery/by-champ/${champion}/by-name/${username}`
 	)
@@ -40,13 +44,17 @@ export const getMasteryDataOfChampion = async (
 	return result
 }
 
-export const getLowestChampionMastery = async (name) => {
+export const getLowestChampionMastery = async (
+	name
+): Promise<MasteryOfChampion> => {
 	const respond = await fetch(`${backendUrl}/mastery/lowest/by-name/${name}`)
 	const result = await respond.json()
 	return result
 }
 
-export const getNextChampionLevelUp = async (name) => {
+export const getNextChampionLevelUp = async (
+	name
+): Promise<MasteryOfChampion> => {
 	const respond = await fetch(`${backendUrl}/mastery/next/by-name/${name}`)
 	const result = await respond.json()
 	return result
