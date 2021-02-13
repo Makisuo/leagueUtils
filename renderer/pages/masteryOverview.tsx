@@ -17,7 +17,7 @@ import {
 import { MasteryTokens, Table } from '../components/'
 
 import { getComparator, stableSort } from '../utils/tableUtils'
-import { formatDate, getChampionNameById } from '../utils/basics'
+import { filterArray, formatDate, getChampionNameById } from '../utils/basics'
 import { getMasteryData, getAllChampions } from '../utils/API/LeagueAPI'
 
 import HextechIcon from '../public/images/hextech-icon.png'
@@ -80,7 +80,11 @@ const MasteryOverview = () => {
 				<TableBody>
 					{stableSort(
 						data && championData
-							? formatData(data, championData, searchArgs)
+							? filterArray(
+									formatData(data, championData),
+									'name',
+									searchArgs
+							  )
 							: [],
 						getComparator(order, orderBy)
 					).map((row, index: number) => {
@@ -167,7 +171,7 @@ const headCells = [
 	},
 ]
 
-const formatData = (data: any, championData: any, searchArgs: string) => {
+const formatData = (data: any, championData: any) => {
 	const formattedData = data.map(
 		({
 			championId,
@@ -193,11 +197,7 @@ const formatData = (data: any, championData: any, searchArgs: string) => {
 			)
 		}
 	)
-	return _.filter(formattedData, (data) => {
-		if (data.name.toLowerCase().includes(searchArgs.toLowerCase())) {
-			return data
-		}
-	})
+	return formattedData
 }
 const createData = (
 	name: string,

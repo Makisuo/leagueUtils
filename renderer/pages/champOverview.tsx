@@ -11,6 +11,7 @@ import { Table } from '../components'
 
 import { getComparator, stableSort } from '../utils/tableUtils'
 import { getAllChampions } from '../utils/API/LeagueAPI'
+import { filterArray } from '../utils/basics'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -29,6 +30,8 @@ const MasteryOverview = () => {
 	const [order, setOrder] = useState('desc')
 	const [orderBy, setOrderBy] = useState('points')
 
+	const [searchArgs, setSearchArgs] = useState('')
+
 	const getData = async () => {
 		setChampionData(Object.values(await getAllChampions()))
 	}
@@ -41,18 +44,26 @@ const MasteryOverview = () => {
 		<Container className={classes.root}>
 			<Table
 				tableToolBar={{
-					title: 'Champion Mastery Overview',
+					title: 'General Champion Stats Overview',
 				}}
-				tableTitle='Champion Mastery Overview Table'
+				tableTitle='General Champion Stats Overview'
 				headCells={headCells}
 				order={order}
 				setOrder={setOrder}
 				orderBy={orderBy}
 				setOrderBy={setOrderBy}
+				search
+				setSearchArgs={setSearchArgs}
 			>
 				<TableBody>
 					{stableSort(
-						championData ? formatData(championData) : [],
+						championData
+							? filterArray(
+									formatData(championData),
+									'name',
+									searchArgs
+							  )
+							: [],
 						getComparator(order, orderBy)
 					).map((row, index: number) => {
 						return (
