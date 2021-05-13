@@ -116,7 +116,9 @@ const Home = () => {
 				<Typography variant={'body1'}>Coming soon</Typography>
 			</Paper>
 			<Paper className={classes.paper}>
-				<Typography variant={'h4'}>Account Statitcs ETC </Typography>
+				<Typography variant={'h4'}>
+					Account Statitcs ETC ETC{' '}
+				</Typography>
 				<Typography variant={'body1'}>Coming soon</Typography>
 			</Paper>
 		</Container>

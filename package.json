@@ -1,8 +1,8 @@
 {
-	"private": true,
+	"private": false,
 	"name": "league-utils",
 	"description": "League Utils",
-	"version": "0.2.17",
+	"version": "0.2.18",
 	"author": "David Granzin <david.granzin@code.berlin>",
 	"main": "app/background.js",
 	"scripts": {
